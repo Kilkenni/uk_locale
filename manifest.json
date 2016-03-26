@@ -1,15 +1,21 @@
 {
    "info" : {
-      "name" : "Example mod for adding languages.", 
+      "name" : "Ukrainian translation", 
       "version" : 2
    },
    "mixintos" : {
       "stonehearth/locales/supported_languages.json" : "file(added_languages.json)"
    },
    "overrides": {
-      "stonehearth/locales/en-XA.json": "file(translations/stonehearth/en-XA.json)",
-      "stonehearth/locales/en-DEV.json": "file(translations/stonehearth/en-DEV.json)",
-      "rayyas_children/locales/en-XA.json": "file(translations/rayyas_children/en-XA.json)",
-      "rayyas_children/locales/en-DEV.json": "file(translations/rayyas_children/en-DEV.json)"
+	"stonehearth/locales/uk.json": "file(translations/stonehearth/uk.json)",
+	"rayyas_children/locales/uk.json": "file(translations/rayyas_children/uk.json)",
+	"stonehearth/ui/root/css/fonts/autourone/AutourOne-Regular-webfont.eot" : "file(fonts/uk/coval/Coval.eot)",
+    "stonehearth/ui/root/css/fonts/autourone/AutourOne-Regular-webfont.svg" : "file(fonts/uk/coval/Coval.svg)",
+	"stonehearth/ui/root/css/fonts/autourone/AutourOne-Regular-webfont.ttf" : "file(fonts/uk/coval/Coval.ttf)",
+	"stonehearth/ui/root/css/fonts/autourone/AutourOne-Regular-webfont.woff" : "file(fonts/uk/coval/Coval.woff)",
+	"stonehearth/ui/root/css/fonts/grobold/grobold-webfont.eot" : "file(fonts/uk/badaboom/v_BadaBoomBB.eot)",
+	"stonehearth/ui/root/css/fonts/grobold/grobold-webfont.svg" : "file(fonts/uk/badaboom/v_BadaBoomBB.svg)",
+	"stonehearth/ui/root/css/fonts/grobold/grobold-webfont.ttf" : "file(fonts/uk/badaboom/v_BadaBoomBB.ttf)",
+	"stonehearth/ui/root/css/fonts/grobold/grobold-webfont.woff" : "file(fonts/uk/badaboom/v_BadaBoomBB.woff)"
    }
 }

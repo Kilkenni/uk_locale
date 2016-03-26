@@ -12,6 +12,8 @@
             "place_item_on_structure": "placing [name(data.target)]",
             "work_at_workshop": "crafting [str(data.craftable_name)]",
             "attack_melee_adjacent": "attacking [name(data.target)]",
+            "wait_at_safety_point": "waiting at safety banner",
+            "weaponize": "watching for intruders",
             "resting_by_fire": "resting by the fire",
             "claiming_animal": "claiming animal",
             "looking_for_animals": "looking for animals",
@@ -44,7 +46,11 @@
             "fabricate_structure": "building",
             "teardown_structure": "tearing down structures",
             "feed_pasture_animals": "feeding animals",
-            "restock": "restocking items"
+            "restock": "restocking items",
+            "resting_from_injuries": "requiring medical attention",
+            "healing": "treating wounds",
+            "healing_target": "healing [name(data.target)]",
+            "dig_foundation": "digging foundation"
          }
       }
    },
@@ -163,7 +169,8 @@
             "load_game": "Load Game",
             "game_different_version": "incompatible save version",
             "delete_incompatible_saves": "Delete Incompatible Saves",
-            "save_time": "Saved [str(save_time)]"
+            "save_time": "Saved [str(save_time)]",
+            "save_tooltip_description": "Folder Name: [str(folder_name)]"
          },
          "common": {
             "ok": "OK",
@@ -182,7 +189,7 @@
             "create_party": "Create Party",
             "edit_party": "Edit",
             "add_party_member": "Add Member",
-            "disband_party": "Disband",
+            "remove_members": "Remove All Members",
             "add_party_member_title": "Manage Roster",
             "done_adding_members": "Done",
             "add_party_member_button": "Add",
@@ -198,7 +205,27 @@
          },
          "unit_frame": {
             "show_character_sheet": "Show character sheet",
-            "focus_camera": "Focus camera on this unit"
+            "focus_camera": "Focus camera on this unit",
+            "attack_target": {
+               "display_name": "Attack Target",
+               "description": "Attack a specific enemy at the exclusion of all others, or attack anything near a location, and everything in between."
+            },
+            "defend_location": {
+               "display_name": "Defend Location",
+               "description": "Run towards, then stay at this location, attacking anything in the path."
+            },
+            "move_unit": {
+               "display_name": "Move to Location",
+               "description": "Move to a location, ignoring all intervening threats."
+            },
+            "manage_party": {
+               "display_name": "Manage Party",
+               "description": "Add and remove combat units from the party."
+            },
+            "cancel_order": {
+               "display_name": "Cancel Combat Order",
+               "description": "Cancels active combat orders."
+            }
          },
          "citizens": {
             "title": "Citizens",
@@ -210,11 +237,22 @@
                "build": "Build",
                "mine": "Mine",
                "job": "Job",
-               "current_activity": "Current Activity..."
+               "current_activity": "Current Activity...",
+               "militia": "Militia",
+               "status": "Status"
             },
             "show_character_sheet": "More Info",
             "button_suspend": "suspend",
-            "button_resume": "resume"
+            "button_resume": "resume",
+            "tab": {
+               "tasks": "Tasks",
+               "groups": "Groups"
+            },
+            "enrollment": {
+               "enrolled": "Enrolled",
+               "not_enrolled": "Not enrolled",
+               "cannot_enroll": "Cannot enroll"
+            }
          },
          "create_camp": {
             "new_game_place_banner": "Click me to place your town banner",
@@ -247,6 +285,7 @@
             "resume": "Resume",
             "save": "Save or Load Game",
             "settings": "Settings",
+            "about": "About",
             "quit_to_menu": "Quit to Main Menu",
             "exit_game": "Exit Game",
             "post_bug": "Post a bug",
@@ -280,12 +319,15 @@
                "refined": "Refined",
                "uncategorized": "Uncategorized",
                "workshops": "Workshops",
+               "consumable": "Consumable",
+               "storage": "Storage",
                "none": "None"
             },
             "tooltip_combat_base_damage": "Atk:",
             "tooltip_combat_base_damage_reduction": "Def:",
             "tooltip_num_undeployed": "Undeployed: [str(num_undeployed)]",
-            "death_notification": "[name(i18n_data.entity)] has died."
+            "death_notification": "[name(i18n_data.entity)] has died.",
+            "imminent_death_notification": "[name(i18n_data.citizen)] is severely low on health!"
          },
          "menu": {
             "town_menu": {
@@ -414,6 +456,21 @@
                      "description": "Steal items from another player.",
                      "tip_title": "Click and drag to loot items from the world",
                      "tip_description": "Right click to exit this mode"
+                  },
+                  "party_1": {
+                     "display_name": "Combat Party 1",
+                     "description": "Direct hearthlings with combat jobs into battle! Promoted combat classes are automatically added here.",
+                     "tip_title": "The party is selected in the unit frame.",
+                     "tip_description": "Use the commands in the unit frame to direct the people in the party."
+                  },
+                  "party_2": {
+                     "display_name": "Combat Party",
+                     "description": "Direct hearthlings with combat jobs into battle! Use the unit frame controls to manage the party.",
+                     "tip_title": "The party is selected in the unit frame.",
+                     "tip_description": "Use the commands in the unit frame to direct the people in the party."
+                  },
+                  "party": {
+                     "required_job_text": "Requires a footman"
                   }
                }
             },
@@ -450,6 +507,11 @@
                      "display_name": "Potter Craft Menu",
                      "description": "Makes bricks and goods from clay.",
                      "required_job_text": "Requires a potter"
+                  },
+                  "herbalist": {
+                     "display_name": "Herbalist Craft Menu",
+                     "description": "Makes healing items from herbs.",
+                     "required_job_text": "Requires an herbalist"
                   }
                }
             },
@@ -476,6 +538,9 @@
                "percent_full": "[str(percent)] Percent Full",
                "active": "active",
                "paused": "paused"
+            },
+            "warnings": {
+               "town_inventory_full": "Town Inventory Full"
             }
          },
          "bulletin": {
@@ -483,8 +548,10 @@
             "shop": {
                "buy_1": "Buy 1",
                "buy_10": "Buy 10",
+               "buy_all": "Buy All",
                "sell_1": "Sell 1",
                "sell_10": "Sell 10",
+               "sell_all": "Sell All",
                "buy_tab": "Buy",
                "sell_tab": "Sell",
                "not_enough_gold_tooltip": "Not enough gold"
@@ -505,6 +572,10 @@
             "collection_quest": {
                "pay": "Here you go!",
                "cancel": "I've changed my mind"
+            },
+            "inventory_full": {
+               "title": "Town Inventory Full",
+               "message": "Your town inventory is full! Hearthlings hate cluttered towns and will not harvest resources with a full inventory. Sell off the extra items or destroy them using the clear item tool."
             }
          },
          "build_mode": {
@@ -552,8 +623,7 @@
                "build_road_tip_description": "Right click to exit"
             },
             "building_cost": {
-               "required_item": "Required Item",
-               "count": "Num"
+               "required_item": "Required Items"
             },
             "overview": {
                "title": "Building Designer - [str(building_name)]",
@@ -703,6 +773,7 @@
                   "tooltip_clay": "clay",
                   "tooltip_ore": "ore",
                   "tooltip_animal_part": "animal parts",
+                  "tooltip_earth": "materials made of earth",
                   "tooltip_plant": "plants",
                   "tooltip_portal": "doors & windows",
                   "tooltip_furniture": "furniture",
@@ -721,8 +792,9 @@
                   "tooltip_gold": "gold",
                   "tooltip_gem": "gems and trophies",
                   "tooltip_food_containers": "food containers",
-                  "tooltip_refined": "cooked foods",
-                  "tooltip_ingredients": "raw ingredients"
+                  "tooltip_prepared_food": "cooked foods",
+                  "tooltip_ingredients": "raw ingredients",
+                  "tooltip_healing_items": "healing items and other consumables"
                }
             }
          },
@@ -747,6 +819,7 @@
             "workshop_closed": "Closed",
             "maintain_option_disabled": "Build a stockpile or place a crate to unlock more crafting options!",
             "craft": "Craft!",
+            "craft_queue_full": "Orders Full!",
             "craftable_locked": "Unlocked at Level: [str(level)]",
             "workshop_requirement_title": "Workshop",
             "workshop_none_required": "None required!",
@@ -802,11 +875,17 @@
             },
             "score": {
                "net_worth": "Net worth",
+               "buildings": "Buildings",
+               "inventory": "Inventory",
+               "agriculture": "Agriculture",
                "edibles": "Edibles",
                "overall_morale": "Overall Morale",
                "food": "Food",
                "shelter": "Shelter",
                "safety": "Safety"
+            },
+            "inventory": {
+               "item_count": "Items:"
             },
             "tab": {
                "town_overview": "Town Overview",
@@ -816,13 +895,17 @@
          }
       },
       "shell": {
+         "about": {
+            "title": "About Stonehearth",
+            "attributions": "The following is a list of OpenSource Software that is used in Stonehearth:"
+         },
          "loading_screen": {
             "initial_load_map_text": "Generating World",
             "loading_map_flavor_text": {
                "001": "sharpening right angles...",
                "002": "decompressing voxels...",
                "003": "synthesizing fauna...",
-               "004": "redistubuting redistrubutables...",
+               "004": "redistributing redistributables...",
                "005": "terracing terrain...",
                "006": "stocking piles...",
                "007": "inflating trees...",
@@ -963,13 +1046,15 @@
                "enable_speed_3_description": "Adds a new speed option in the bottom right panel that will run the game at 4x speed!",
                "default_storage_filter_none": "Storage filter defaults to None",
                "default_storage_filter_none_description": "When creating a new stockpile or putting down a new crate, the default filter on the storage will be set to 'None' instead of 'All'",
+               "show_hearthling_paths": "Show Hearthling paths",
+               "show_hearthling_paths_description": "Display the path your hearthlings are following.",
                "max_citizens": "Max Citizens"
             }
          },
          "title_screen": {
             "exit": "exit",
             "settings": "settings",
-            "credits": "credits",
+            "about": "about",
             "kingdom_of": "The Kingdom of",
             "continue_game": "Continue",
             "new_game": "New Game",
@@ -1018,7 +1103,7 @@
             "finished": "Embark!",
             "no_talisman_confirm_dialog": {
                "title": "Embark",
-               "message": "Are you sure you want to embark without choosing a tool from the shop? As always, you will still get a Carpenter's Saw.",
+               "message": "Are you sure you want to embark without choosing a tool from the shop? As always, you will still get the starting talisman for your faction.",
                "accept": "Yes, hard mode.",
                "cancel": "Wait!"
             }
@@ -1028,10 +1113,10 @@
          "post_bug": {
             "title": "Filing bugs",
             "message": "Thanks for participating in the Stonehearth Alpha! Here's how you can file a bug.",
-            "file_bug_step_1": "Go to http://discourse.stonehearth.net/c/support/active-bug",
+            "file_bug_step_1": "Go to http://discourse.stonehearth.net/c/support/bug-reports",
             "file_bug_step_2": "Check the list of active topics, and if your bug hasn't already been reported, create a new topic",
-            "file_bug_step_3": "When filing bugs, please include screenshots of the error",
-            "file_bug_step_4": "If you're reporting a crash bug, include your unique user id"
+            "file_bug_step_3": "When filing bugs, please be sure to include all the information requested in the report, and copy the text of all engine errors. Screenshots for visual bugs are also helpful.",
+            "file_bug_step_4": "If you're encountering a crashing bug, please check out http://discourse.stonehearth.net/t/13297 for common solutions, and how to get support for crashes. Below is your unique user id:"
          },
          "error_browser": {
             "title": "Engine Error",
@@ -1051,9 +1136,9 @@
          "tooltips": {
             "stamina": {
                "display_name": "Stamina",
-               "description": "How long this hearthling can work before needing rest.",
+               "description": "This hearthling's physical endurance.",
                "bullet_points": {
-                  "000": "Determines sleep duration"
+                  "000": "Each point increases max health by 2"
                }
             },
             "inventiveness": {
@@ -1072,7 +1157,7 @@
                "display_name": "Compassion",
                "description": "How likely this hearthling will help out a fellow villager or befriend others.",
                "bullet_points": {
-                  "000": "Determines maxiumum trapper pet count",
+                  "000": "Determines maximum trapper pet count",
                   "001": "Increases shepherd animal happiness"
                }
             },
@@ -1083,19 +1168,21 @@
             },
             "diligence": {
                "display_name": "Diligence",
-               "description": "This hearthling's concentration. Diligent workers complete long tasks without getting distracted.",
+               "description": "How long this hearthling can work before needing rest.",
                "bullet_points": {
-                  "000": "Increases crafting speed"
+                  "000": "Determines sleep duration"
                }
             },
             "willpower": {
                "display_name": "Willpower",
-               "description": "How likely this hearthling is to resist enemy charms."
+               "description": "How likely this hearthling is to resist enemy charms.",
+               "bullet_points": {
+                  "000": "Determines health regeneration"
+               }
             },
             "net_worth": {
                "display_name": "Net Worth",
-               "description": "A score based on the value of everything in the town's inventory.",
-               "town_description": "The gold value of everything in the town's inventory."
+               "description": "A reflection of the prosperity of your town. Buildings, inventory, and agriculture combine to form this score."
             },
             "courage": {
                "display_name": "Courage",
@@ -1122,7 +1209,7 @@
             },
             "body": {
                "display_name": "Body",
-               "description": "Competence at physical activities. Hearthlings with a high Body stat will move faster. Influences Muscle, Speed, Stamina."
+               "description": "Competence at physical activities. Hearthlings with a high Body stat will move a bit faster, attack harder, and live longer. Influences Muscle, Speed, Stamina."
             },
             "edibles": {
                "display_name": "Edibles",
@@ -1131,7 +1218,7 @@
             },
             "mind": {
                "display_name": "Mind",
-               "description": "The ability to think intelligently. A high Mind stat allows a hearthling to exceed in complex mental tasks. Influences Diligence, Curiosity, Inventiveness."
+               "description": "The ability to think intelligently. A high Mind stat allows a hearthling to excel in complex mental activities such as crafting. Influences Diligence, Curiosity, Inventiveness."
             },
             "curiosity": {
                "display_name": "Curiosity",
@@ -1142,16 +1229,33 @@
             },
             "spirit": {
                "display_name": "Spirit",
-               "description": "Faith in other people. A high Spirit hearthling will easily befriend others and stand strong against enemies. Influences Courage, Willpower, Compassion."
+               "description": "Faith in other people. A high Spirit hearthling will easily befriend animals and stand strong against enemies. Influences Courage, Willpower, Compassion."
             },
             "safety": {
                "display_name": "Safety",
                "description": "Protect your town from raiders and make your citizens feel safe by assigning guards.",
                "town_description": "How your citizens feel about the town's security. Is the town well protected or getting pillaged by goblins?"
+            },
+            "militia": {
+               "display_name": "Militia",
+               "description": "In Town Alert Mode, militia members will hold their ground against enemies instead of running to a safety banner. In addition, they receive an extra boost of Courage and Muscle."
+            },
+            "inventory": {
+               "display_name": "Inventory",
+               "description": "The gold value of all non-Resource items in the town inventory."
+            },
+            "buildings": {
+               "display_name": "Buildings",
+               "description": "The value of all the buildings constructed your town. Large buildings will have much higher score contributions than small ones."
+            },
+            "agriculture": {
+               "display_name": "Agriculture",
+               "description": "The value of farming fields and pastures in your town. Each planted crop and each pasture animal contributes to the score."
             }
          },
          "constants": {
             "food_meat_raw_name": "Raw Meat",
+            "food_veggie_raw_name": "Raw Vegetable",
             "stone_resource_name": "Stone",
             "pelt_resource_name": "Fur Pelt",
             "cloth_resource_name": "Bolt of Cloth",
@@ -1161,7 +1265,8 @@
             "thread_resource_name": "Thread",
             "leather_resource_name": "Bolt of Leather",
             "fiber_resource_name": "Bundle of Fiber",
-            "ingot_resource_name": "Metal Ingot"
+            "ingot_resource_name": "Metal Ingot",
+            "herb_resource_name": "Herb"
          }
       }
    },
@@ -1250,12 +1355,6 @@
                   "return_title": "The trader returns!",
                   "return_greetings_positive": "I'm back! It looks like you've made me the [str(i18n_data.want_number)] [str(i18n_data.want_item)] I asked for. Are you still willing to trade them to me? I'll give you [str(i18n_data.reward_number)] [str(i18n_data.reward_item)] in exchange. Still sounds good?",
                   "return_greetings_negative": "I'm back, but it doesn't look like you've got the [str(i18n_data.want_number)] [str(i18n_data.want_item)] I asked for. That's too bad! Maybe next time!"
-               },
-               "food_shop": {
-                  "shop_info": {
-                     "name": "A simple food cart",
-                     "title": "A simple food cart rolls into town"
-                  }
                },
                "rugs_shop": {
                   "shop_info": {
@@ -1525,7 +1624,7 @@
                               "000": "There are wolves in the woods! Run away while you still can!",
                               "001": "Can't you hear the howling? There are goblin wolves in the woods!",
                               "002": "Our group was just attacked by goblins! Flee!",
-                              "003": "Those goblin wolves aren't like normal wolves--they're fast and viscious and unafraid! Run while you can!",
+                              "003": "Those goblin wolves aren't like normal wolves--they're fast and vicious and unafraid! Run while you can!",
                               "004": "You have goblins in your woods! Bunker down somewhere safe before they attack!"
                            },
                            "bulletin_title": "Panting refugees appear on the horizon",
@@ -1774,6 +1873,11 @@
                }
             },
             "ambient_threats": {
+               "random_encounter": {
+                  "combat_bulletin": {
+                     "title": "An enemy!"
+                  }
+               },
                "goblin_thieves": {
                   "missions": {
                      "raid_stockpiles": {
@@ -1880,11 +1984,31 @@
                      }
                   }
                },
-               "undead_raid": {
-                  "mission": {
-                     "sighted_bulletin": {
-                        "title": "Invaders sighted!"
-                     }
+               "zombie_chest_camp": {
+                  "boss": {
+                     "display_name": "Giant Zombie",
+                     "description": "Blaarhgh.. don't touch Master's treasure!!"
+                  }
+               },
+               "wolf_pack_raid": {
+                  "wolves": {
+                     "description": "Defending its territory"
+                  }
+               },
+               "giant_alligator_raid_6": {
+                  "alligators": {
+                     "description": "The larger variety."
+                  }
+               },
+               "giant_wolf_raid_4": {
+                  "wolf": {
+                     "display_name": "Giant Wolf",
+                     "description": "Terrifyingly large.. and toothy"
+                  }
+               },
+               "entling_raid_7": {
+                  "giant_entlings": {
+                     "display_name": "Giant Entling"
                   }
                },
                "arcs": {
@@ -1899,6 +2023,75 @@
                                  },
                                  "workers": {
                                     "description": "Designated hearth-tender"
+                                 }
+                              }
+                           },
+                           "create_necromancer_crypt": {
+                              "crypt": {
+                                 "display_name": "A Crypt",
+                                 "description": "Constructed by the Phoenix Empire"
+                              },
+                              "sarcophagus": {
+                                 "display_name": "Stone Sacrophagus",
+                                 "description": "Here lies a member of the Black Cord"
+                              },
+                              "crypt_structures": {
+                                 "floor_candle": {
+                                    "description": "Illuminates the crypt entrance"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "random_raid": {
+                  "mission": {
+                     "sighted_bulletin": {
+                        "title": "Invaders Approaching!"
+                     }
+                  }
+               }
+            },
+            "game_events": {
+               "arcs": {
+                  "trigger": {
+                     "game_events": {
+                        "encounters": {
+                           "ent_warning": {
+                              "collection_quest_info": {
+                                 "dialog_nodes": {
+                                    "collection_due": {
+                                       "bulletin_message": {
+                                          "000": "Will you not release the children of the forest? They do not belong in your crates and piles of trinkets. Your compliance will be rewarded.",
+                                          "001": "Hundreds of great oaks and junipers have been cut down to satiate the greed of humans. Our patience wears thin. I ask of you, return them to the homeland.",
+                                          "002": "Return our logs and help restore the natural balance of the great woodlands. I cannot guarantee your safetey if you refuse.",
+                                          "003": "Our wilderness has been sacrificed for your lifestyle of excess. We will give you a chance to return our logs. I suggest you heed my warning.."
+                                       },
+                                       "bulletin_title": "The Ent has a request.",
+                                       "dialog_title": "Ent"
+                                    },
+                                    "collection_failed": {
+                                       "bulletin_message": {
+                                          "000": "I am deeply disappointed.. I would suggest you prepare yourselves. The minions of the forest speak of an invasion."
+                                       },
+                                       "bulletin_title": "The Ent furrows his brow"
+                                    },
+                                    "collection_success": {
+                                       "bulletin_message": {
+                                          "000": "Thank you for your cooperation.. In return, I will give you [str(i18n_data.reward_gold_amount)] gold coins and [str(i18n_data.reward_item_count)] [str(i18n_data.reward_item_name)]."
+                                       },
+                                       "bulletin_title": "The Ent nods peacefully",
+                                       "dialog_title": "Ent"
+                                    },
+                                    "introduction": {
+                                       "bulletin_message": {
+                                          "000": "Greetings, humans of [str(i18n_data.town_name)]. I have come to warn you of the growing unrest within these forests.",
+                                          "001": "Silently, we have been watching.. since even before the fall of Firebird. Why? To protect. Our trees. Our saplings. Our woods."
+                                       },
+                                       "bulletin_title": "A large tree-like figure approaches.",
+                                       "dialog_title": "Ent"
+                                    }
                                  }
                               }
                            }
@@ -1926,13 +2119,13 @@
          "defender": {
             "defender_buff": {
                "display_name": "Defender",
-               "description": "Increased courage!"
+               "description": "Increased courage and muscle!"
             }
          },
          "devoted": {
             "devoted_buff": {
                "display_name": "Devoted",
-               "description": "Devoted"
+               "description": "Speed Increased by 20"
             }
          },
          "groggy": {
@@ -1947,7 +2140,7 @@
                "description": "Taken care of by a compassionate shepherd. This animal will produce more resources and offspring."
             },
             "shepherding_speed_bonus": {
-               "display_name": "Herd Speed Increase +10%",
+               "display_name": "Herd Speed Increase",
                "description": "The shepherd is now more adept at getting the flock to walk a tiny bit faster."
             },
             "stenched_shepherd_buff": {
@@ -1982,6 +2175,52 @@
             "stopped_buff": {
                "display_name": "Stopped",
                "description": "Put this buff on someone who needs to stop, right now."
+            }
+         },
+         "injured": {
+            "injured_buff": {
+               "display_name": "Injured",
+               "description": "Moving slower due to low health."
+            }
+         },
+         "recovering": {
+            "recovering_buff": {
+               "display_name": "Bed Ridden",
+               "description": "Slowly recovering from injuries. Can receive medical care from herbalists."
+            }
+         },
+         "stamina_tonic": {
+            "stamina_tonic_buff": {
+               "display_name": "Stamina Tonic",
+               "description": "Health increased greatly."
+            }
+         },
+         "strength_tonic": {
+            "strength_tonic_buff": {
+               "display_name": "Strength Tonic",
+               "description": "Muscle increased greatly for more combat damage."
+            }
+         },
+         "severely_injured": {
+            "severely_injured_buff": {
+               "display_name": "Severly Injured",
+               "description": "Wounded badly! This hearthling can hardly walk!"
+            }
+         },
+         "undead_infection": {
+            "display_name": "Infected",
+            "description": "Prevents natural health recovery via willpower."
+         },
+         "courage_tonic": {
+            "courage_tonic_buff": {
+               "display_name": "Courage Tonic",
+               "description": "Courage increased for a short while."
+            }
+         },
+         "minor_courage_buff": {
+            "minor_courage_buff_buff": {
+               "display_name": "Minor Courage",
+               "description": "Small boost of courage while in alert mode"
             }
          }
       },
@@ -2127,6 +2366,31 @@
          "plant_tree": {
             "display_name": "Plant Tree",
             "description": "Plant this tree in some dirt."
+         },
+         "use_consumable": {
+            "display_name": "Use",
+            "description": "Use this consumable item to buff every hearthling in town. This will destroy the item."
+         },
+         "edit_party": {
+            "display_name": "Edit Party",
+            "description": "Add and remove combatants from this party."
+         },
+         "cancel_marker": {
+            "display_name": "Cancel Marker",
+            "description": "Cancels the combat orders represented by this marker"
+         },
+         "select_owner": {
+            "display_name": "Select Owner",
+            "description": "Selects the combatants influenced by this marker"
+         },
+         "call_trader": {
+            "display_name": "Call Merchant",
+            "description": "Call a trader to this stall",
+            "disabled_description": "A trader has already visited this stall recently. Try again later."
+         },
+         "show_shop": {
+            "display_name": "Show Shop",
+            "description": "Buy and sell goods"
          }
       },
       "personality": {
@@ -2969,15 +3233,35 @@
                }
             }
          }
+      },
+      "prototypes": {
+         "party": {
+            "display_name": "Party No.[str(self.unit_info.custom_name)]",
+            "description": "Organizes troops into groups for combat"
+         }
+      },
+      "shops": {
+         "basic_resource_shop": {
+            "name": "Basic Resource Shop",
+            "title": "Basic Resource Shop"
+         }
       }
    },
    "entities": {
       "armor": {
+         "knights_shield": {
+            "shield_talisman": {
+               "display_name": "Knight's Shield",
+               "description": "Required to promote a hearthling to a knight"
+            },
+            "display_name": "Metal Shield",
+            "description": "Provides a moderate amount of defense"
+         },
          "basic_shield": {
-            "display_name": "Trusty Shield",
+            "display_name": "Steel Shield",
             "description": "Portable armor!",
             "basic_shield_iconic": {
-               "display_name": "Trusty Shield",
+               "display_name": "Steel Shield",
                "description": "Portable armor!"
             }
          },
@@ -3040,6 +3324,46 @@
                "display_name": "Rough Wooden Buckler",
                "description": "Crude and basic"
             }
+         },
+         "bronze_circlet": {
+            "display_name": "Bronze Circlet",
+            "description": "Protection for your head",
+            "bronze_circlet_iconic": {
+               "display_name": "Bronze Circlet",
+               "description": "Protection for your head"
+            }
+         },
+         "bronze_shield": {
+            "display_name": "Bronze Shield",
+            "description": "Useful for blocking attacks",
+            "bronze_shield_iconic": {
+               "display_name": "Bronze Shield",
+               "description": "Useful for blocking attacks"
+            }
+         },
+         "iron_coif": {
+            "display_name": "Iron Coif",
+            "description": "Protection for your head",
+            "iron_coif_iconic": {
+               "display_name": "Iron Coif",
+               "description": "Protection for your head"
+            }
+         },
+         "leather_helmet": {
+            "display_name": "Leather Skull Cap",
+            "description": "Protection for your head",
+            "leather_helmet_iconic": {
+               "display_name": "Leather Skull Cap",
+               "description": "Protection for your head"
+            }
+         },
+         "steel_helmet": {
+            "display_name": "Plate Helm",
+            "description": "Protection for your head",
+            "steel_helmet_iconic": {
+               "display_name": "Steel Helmet",
+               "description": "Protection for your head"
+            }
          }
       },
       "boulders": {
@@ -3089,12 +3413,6 @@
                "description": "It's thick stone walls grant a sense of security."
             }
          },
-         "crafting": {
-            "workshop_outbox": {
-               "display_name": "Crafter Outbox",
-               "description": "Stores finished craftables"
-            }
-         },
          "picket_fence": {
             "picket_fence_ghost": {
                "display_name": "Picket Fence",
@@ -3133,6 +3451,10 @@
             "wooden_door_ghost": {
                "display_name": "Wooden Door",
                "description": "Privacy at last!"
+            },
+            "wooden_tunnel_door_ghost": {
+               "display_name": "Wooden Tunnel Door",
+               "description": "Useful for blocking off tunnels"
             }
          },
          "wooden_double_door": {
@@ -3206,6 +3528,18 @@
                "display_name": "Latticed Clay Window Frame",
                "description": "The lattice still lets the good air in."
             }
+         },
+         "stone_tunnel_door": {
+            "stone_tunnel_door_ghost": {
+               "display_name": "Stone Tunnel Door",
+               "description": "Useful for sealing off mine tunnels."
+            }
+         },
+         "clay_tunnel_door": {
+            "clay_tunnel_door_ghost": {
+               "display_name": "Clay Tunnel Door",
+               "description": "Useful for sealing off mine tunnels"
+            }
          }
       },
       "containers": {
@@ -3256,12 +3590,34 @@
                "display_name": "The Vault",
                "description": "Massive storage"
             }
-         }
-      },
-      "crafting": {
-         "workshop_outbox": {
-            "display_name": "Crafter Outbox",
-            "description": "Stores finished craftables"
+         },
+         "log_pile": {
+            "log_pile_ghost": {
+               "display_name": "Log Pile",
+               "description": "Harvest for a large number of logs"
+            },
+            "log_pile_iconic": {
+               "description": "Harvestable for wood when placed."
+            }
+         },
+         "stone_pile": {
+            "stone_pile": {
+               "description": "Harvest for many hunks of stone",
+               "display_name": "Stone Pile"
+            },
+            "stone_pile_iconic": {
+               "description": "Harvestable for stone when placed"
+            }
+         },
+         "clay_pile": {
+            "display_name": "Clay Pile",
+            "description": "Harvest for a large amount of clay",
+            "iconic_description": "Harvestable for clay when placed"
+         },
+         "wheat_pile": {
+            "display_name": "Large Wheat Bundle",
+            "description": "Harvest for a large amount of wheat",
+            "iconic_description": "Harvestable for wheat when placed"
          }
       },
       "critters": {
@@ -3318,12 +3674,16 @@
          "wolf": {
             "display_name": "A wolf",
             "description": "Grrr! Rwar!"
+         },
+         "woodchuck": {
+            "display_name": "Woodchuck",
+            "description": "A voracious eater of almost everything, especially logs."
          }
       },
       "crops": {
          "brightbell_crop": {
             "display_name": "Brightbell Flower",
-            "description": "Just a flower.",
+            "description": "Can be used as a healing herb",
             "growth_stage": {
                "001": {
                   "name": "Brightbell Sprout",
@@ -3395,35 +3755,9 @@
                }
             }
          },
-         "foo_truffle": {
-            "silkweed_crop": {
-               "display_name": "Silkweed",
-               "description": "This plant's fiber can be spun into thread",
-               "growth_stage": {
-                  "004": {
-                     "name": "Mature silkweed"
-                  },
-                  "001": {
-                     "name": "Silkweed sprout"
-                  },
-                  "000": {
-                     "name": "Silkweed seedling"
-                  },
-                  "019": {
-                     "name": "Rotten silkweed"
-                  },
-                  "003": {
-                     "name": "Immature silkweed"
-                  },
-                  "002": {
-                     "name": "Stubby silkweed"
-                  }
-               }
-            }
-         },
          "frostsnap_crop": {
             "display_name": "Frostsnap Flower",
-            "description": "It's chill to the touch.",
+            "description": "Can be used as a healing herb",
             "growth_stage": {
                "001": {
                   "name": "Frostsnap Sprout",
@@ -3692,18 +4026,40 @@
                   "description": "Sadly inedible"
                }
             }
+         },
+         "cactus_flower_crop": {
+            "description": "The flowers have medicinal properties",
+            "display_name": "Cactus Flower",
+            "growth_stage": {
+               "000": {
+                  "name": "Cactus Bud",
+                  "description": "Starting to grow"
+               },
+               "001": {
+                  "name": "Young Cactus",
+                  "description": "Starting to get prickly"
+               },
+               "002": {
+                  "name": "Mature Cactus",
+                  "description": "Wait for its flower to bloom"
+               },
+               "003": {
+                  "name": "Flowering Cactus",
+                  "description": "Ready for harvesting"
+               }
+            }
          }
       },
       "decoration": {
          "banner_wall_big": {
             "banner_wall_big_ghost": {
-               "display_name": "Big Wall-Mounted Banner",
+               "display_name": "Big Wall Banner",
                "description": "Show your town pride with this banner."
             }
          },
          "banner_wall_small": {
             "banner_wall_small_ghost": {
-               "display_name": "Small Wall-Mounted Banner",
+               "display_name": "Small Wall Banner",
                "description": "Show your town pride with this banner."
             }
          },
@@ -3711,12 +4067,6 @@
             "bird_bath_ghost": {
                "display_name": "Bird Bath",
                "description": "Tranquil."
-            }
-         },
-         "brightbell": {
-            "brightbell_ghost": {
-               "display_name": "Brightbell Flower",
-               "description": "Just a flower."
             }
          },
          "crate": {
@@ -3740,12 +4090,6 @@
                "description": "Are those....ew."
             }
          },
-         "frostsnap": {
-            "frostsnap_ghost": {
-               "display_name": "Frostsnap Flower",
-               "description": "It's chill to the touch!"
-            }
-         },
          "fur_rug": {
             "fur_rug_ghost": {
                "display_name": "Fur Rug",
@@ -3754,7 +4098,7 @@
          },
          "gargoyle": {
             "gargoyle_ghost": {
-               "display_name": "Wall Mounted Decorative Gargoyle",
+               "display_name": "Wall Gargoyle",
                "description": "Gothic-style carving to decorate your walls."
             }
          },
@@ -3774,6 +4118,12 @@
                "description": "Provides warm and cozy fire at night"
             }
          },
+         "stone_floor_candle_holder": {
+            "stone_floor_candle_holder_ghost": {
+               "display_name": "Stone Floor Candle Holder",
+               "description": "Let there be light!"
+            }
+         },
          "stone_garden_lantern": {
             "stone_garden_lantern_ghost": {
                "display_name": "Stone Garden Lantern",
@@ -3782,7 +4132,7 @@
          },
          "stone_wall_lantern": {
             "stone_wall_lantern_ghost": {
-               "display_name": "Stone Wall-mounted Lantern",
+               "display_name": "Stone Wall Lantern",
                "description": "Easily attached to walls"
             }
          },
@@ -3836,50 +4186,44 @@
          },
          "wooden_sign": {
             "wooden_sign_ghost": {
-               "display_name": "Wooden Wall-Mounted Sign",
+               "display_name": "Wooden Wall Sign",
                "description": "An expression of future intent."
             }
          },
          "wooden_sign_blacksmith": {
             "wooden_sign_blacksmith_ghost": {
-               "display_name": "Blacksmith's Wall-Mounted Sign",
+               "display_name": "Blacksmith's Sign",
                "description": "A sign with the mark of the blacksmith."
             }
          },
          "wooden_sign_carpenter": {
             "wooden_sign_carpenter_ghost": {
-               "display_name": "Carpenter's Wall-Mounted Sign",
+               "display_name": "Carpenter's Sign",
                "description": "A sign with the mark of the Carpenter."
             }
          },
          "wooden_sign_mason": {
             "wooden_sign_mason_ghost": {
-               "display_name": "Mason's Wall-Mounted Sign",
+               "display_name": "Mason's Sign",
                "description": "A sign with the mark of the Mason."
             }
          },
          "wooden_sign_weaver": {
             "wooden_sign_weaver_ghost": {
-               "display_name": "Weaver's Wall-Mounted Sign",
+               "display_name": "Weaver's Sign",
                "description": "A sign with the mark of the Weaver."
             }
          },
          "wooden_wall_lantern": {
             "wooden_wall_lantern_ghost": {
-               "display_name": "Wooden Wall-mounted Lantern",
+               "display_name": "Wooden Wall Lantern",
                "description": "Easily attached to walls"
             }
          },
          "wooden_wall_lantern_fine": {
             "wooden_wall_lantern_fine_ghost": {
-               "display_name": "Fine Wall-mounted Lantern",
+               "display_name": "Fine Wall Lantern",
                "description": "Easily attached to walls"
-            }
-         },
-         "cactus_flower": {
-            "cactus_flower_ghost": {
-               "display_name": "Cactus Flower",
-               "description": "Handle with care!"
             }
          },
          "clay_lamp": {
@@ -3890,7 +4234,7 @@
          },
          "clay_wall_lamp": {
             "clay_wall_lamp_ghost": {
-               "display_name": "Wall mounted clay lamp",
+               "display_name": "Wall Clay Lamp",
                "description": "Provides a warm glow at night."
             }
          },
@@ -3950,7 +4294,7 @@
          },
          "golden_clay_wall_planter": {
             "golden_clay_wall_planter_ghost": {
-               "display_name": "Golden Clay Wall Planter",
+               "display_name": "Golden Clay Planter",
                "description": "Livens up walls"
             }
          },
@@ -3958,6 +4302,36 @@
             "unfired_clay_vase_ghost": {
                "display_name": "Unfired Clay Vase",
                "description": "A very simple vase"
+            }
+         },
+         "wooden_sign_herbalist": {
+            "wooden_sign_herbalist_ghost": {
+               "display_name": "Herbalist's sign",
+               "description": "A sign with the mark of the Herbalist"
+            }
+         },
+         "wooden_sign_inn": {
+            "wooden_sign_inn_ghost": {
+               "display_name": "Inn Sign",
+               "description": "A sign marking a place for rest and revelry."
+            }
+         },
+         "wooden_sign_potter": {
+            "wooden_sign_potter_ghost": {
+               "display_name": "Potter's Sign",
+               "description": "A sign with the mark of the Potter"
+            }
+         },
+         "wooden_sign_cook": {
+            "wooden_sign_cook_ghost": {
+               "display_name": "Cook's Sign",
+               "description": "A sign with the mark of the cook"
+            }
+         },
+         "clay_market_stall": {
+            "clay_market_stall_ghost": {
+               "display_name": "Clay Market Stall",
+               "description": "Merchants can set up shop here"
             }
          }
       },
@@ -4180,6 +4554,31 @@
             "vegetable_tagine_serving": {
                "display_name": "Bowl of Veggie Stew"
             }
+         },
+         "rotten_basket": {
+            "display_name": "Rotten Food Basket",
+            "description": "So rotten that it's lost all form and function."
+         },
+         "rotten_egg": {
+            "display_name": "Rotten Egg",
+            "description": "Disgusting"
+         },
+         "rotten_jerky": {
+            "display_name": "Rotten Jerky",
+            "description": "Even jerky will rot eventually. It's true"
+         },
+         "mutton": {
+            "display_name": "Raw Mutton",
+            "description": "Raw meat from a sheep"
+         },
+         "roast_mutton": {
+            "roast_mutton": {
+               "display_name": "Rack of Roast Mutton",
+               "description": "Tenderly roasted to perfection"
+            },
+            "roast_mutton_serving": {
+               "display_name": "Roasted Mutton Rack"
+            }
          }
       },
       "furniture": {
@@ -4356,6 +4755,15 @@
                "display_name": "Fine Clay Bed",
                "description": "Gets you off the ground in style. Still uncomfortable, though"
             }
+         },
+         "blue_market_stall": {
+            "blue_market_stall_ghost": {
+               "display_name": "Blue Market Stall",
+               "description": "Merchants can set up shop here"
+            },
+            "trader": {
+               "description": "A traveling merchant"
+            }
          }
       },
       "generic": {
@@ -4378,6 +4786,43 @@
          "control_defend_banner": {
             "display_name": "Defend Banner",
             "description": "Hold this ground in Town Defense mode"
+         },
+         "safety_standard": {
+            "display_name": "Wooden Safety Standard",
+            "clay_safety_standard": {
+               "display_name": "Clay Safety Standard"
+            },
+            "description": "Mark a safety point to flee to in Town Alert mode"
+         },
+         "control_attack_marker": {
+            "control_attack_marker_ghost": {
+               "display_name": "Attack Marker",
+               "description": "Hearthling attacks everything between here and there"
+            }
+         },
+         "control_hold_marker": {
+            "control_hold_marker_ghost": {
+               "display_name": "Hold Marker",
+               "description": "Post aggresively at this location"
+            }
+         },
+         "control_move_marker": {
+            "control_move_marker_ghost": {
+               "display_name": "Move Marker",
+               "description": "Move to this location"
+            }
+         },
+         "party_command_marker": {
+            "party_command_marker_ghost": {
+               "display_name": "Party Command Marker",
+               "description": "Party come here!"
+            }
+         },
+         "individual_command_marker": {
+            "individual_command_marker_ghost": {
+               "display_name": "Command Marker",
+               "description": "Represents a combat command."
+            }
          }
       },
       "loot": {
@@ -4403,6 +4848,18 @@
             "stone_golem": {
                "display_name": "Stone Golem",
                "description": "Solid."
+            },
+            "little_stone_golem": {
+               "display_name": "Little Stone Golem",
+               "description": "He's just a pebble!"
+            },
+            "alligator": {
+               "display_name": "Varanus",
+               "description": "And this is the smaller variety..."
+            },
+            "wolf": {
+               "display_name": "Untamed Wolf",
+               "description": "Grrr! Rwar!"
             }
          },
          "goblins": {
@@ -4500,22 +4957,46 @@
             "wolf_cage": {
                "display_name": "A wolf cage",
                "description": "Signals nappytime for its inhabitants."
+            },
+            "goblin_cage": {
+               "display_name": "Large Cage",
+               "description": "Property of Central Chief Grug Skull Crusher"
             }
          },
          "undead": {
             "skeleton": {
-               "display_name": "A Skeleton",
+               "display_name": "[str(self.unit_info.custom_name)]",
                "description": "It yearns for flesh"
             },
             "zombie": {
-               "display_name": "A Zombie",
+               "display_name": "[str(self.unit_info.custom_name)]",
                "description": "It yearns for flesh",
                "male": {
                   "zombie_male": {
-                     "display_name": "A Zombie",
+                     "display_name": "[str(self.unit_info.custom_name)]",
                      "description": "It yearns for flesh"
                   }
                }
+            },
+            "crypt": {
+               "display_name": "A Crypt",
+               "description": "What lies inside?"
+            },
+            "sarcophagus": {
+               "display_name": "A Sarcophagus",
+               "description": "Holds remains of the dead"
+            },
+            "tombstone": {
+               "display_name": "A Tombstone",
+               "description": "Where undead are born"
+            },
+            "stone_pillar_fence": {
+               "display_name": "Stone Pillar Fence",
+               "description": "Sturdy fence anchored by pillars."
+            },
+            "necromancer": {
+               "display_name": "Necromancer",
+               "description": "Practitioner of the dark arts"
             }
          },
          "rabbit": {
@@ -4549,7 +5030,8 @@
          },
          "brightbell_plant": {
             "display_name": "Wild Brightbell",
-            "description": "A harvestable wild flower"
+            "description": "Can be harvested for healing herbs",
+            "unripe_description": "This plant has been harvested and has not grown back yet"
          },
          "carrot": {
             "carrot_basket": {
@@ -4563,7 +5045,8 @@
          },
          "frostsnap_plant": {
             "display_name": "Wild Frost Snap",
-            "description": "A harvestable wild flower"
+            "description": "Can be harvested for healing herbs",
+            "unripe_description": "This plant has been harvested and has not grown back yet"
          },
          "silkweed": {
             "silkweed": {
@@ -4594,7 +5077,8 @@
          },
          "cactus_plant": {
             "display_name": "Wild Cactus",
-            "description": "A harvestable wild flower"
+            "description": "Can be harvested for healing herbs",
+            "unripe_description": "This plant has been harvested and has not grown back yet"
          },
          "tumbleweed": {
             "display_name": "Tumbleweed",
@@ -4657,7 +5141,7 @@
          },
          "thread": {
             "display_name": "Spool of Thread",
-            "description": "Nobody would ever think this started with a sheep. Or a plant."
+            "description": "Spun from the wool of sheep. Or plants."
          },
          "tin_ingot": {
             "display_name": "Tin Ingot",
@@ -4773,6 +5257,26 @@
             "acacia_log": {
                "display_name": "Acacia Log",
                "description": "A log. Made of wood."
+            }
+         },
+         "herb": {
+            "brightbell": {
+               "display_name": "Brightbell Flowers",
+               "description": "An herb commonly used for medicinal purposes"
+            },
+            "frostsnap": {
+               "display_name": "Frostsnap Flowers",
+               "description": "An herb that's chill to the touch"
+            },
+            "cactus_flower": {
+               "display_name": "Cactus Flower",
+               "description": "A beautiful desert bloom with healing properties"
+            }
+         },
+         "skin": {
+            "varanus_skin": {
+               "display_name": "Varanus Skin",
+               "description": "Rough and scaly"
             }
          }
       },
@@ -5045,7 +5549,7 @@
             "display_name": "Short Sword",
             "description": "Stubby, but its steel blade keeps an edge.",
             "short_sword_iconic": {
-               "display_name": "short Sword",
+               "display_name": "Short Sword",
                "description": "Pointy. Shiny."
             }
          },
@@ -5080,6 +5584,50 @@
                "display_name": "Wooden Sword",
                "description": "Required to promote a hearthling into a Footman."
             }
+         },
+         "scythe": {
+            "display_name": "Scythe",
+            "description": "Preferred weapon for reaping"
+         },
+         "bow": {
+            "display_name": "Bow",
+            "description": "Used by an archer for shooting arrows",
+            "bow_talisman": {
+               "display_name": "Archer's Bow",
+               "description": "Required to promote a Footman to an Archer"
+            }
+         }
+      },
+      "consumables": {
+         "healing_tonic": {
+            "small_healing_tonic": {
+               "display_name": "Small Healing Tonic",
+               "description": "Used by the herbalist to heal small wounds"
+            }
+         },
+         "stamina_tonic": {
+            "display_name": "Stamina Tonic",
+            "description": "Temporarily buffs Stamina"
+         },
+         "strength_tonic": {
+            "display_name": "Strength Tonic",
+            "description": "Temporarily buffs Muscle"
+         },
+         "coarse_bandage": {
+            "display_name": "Coarse Bandage",
+            "description": "Used by the herbalist to heal for a small amount"
+         },
+         "heavy_bandage": {
+            "display_name": "Heavy Bandage",
+            "description": "Used by the herbalist to provide a lot of healing."
+         },
+         "light_bandage": {
+            "description": "Used by the herbalist to heal a moderate amount",
+            "display_name": "Light Bandage"
+         },
+         "courage_tonic": {
+            "display_name": "Courage Tonic",
+            "description": "Temporarily buffs Courage"
          }
       }
    },
@@ -5092,10 +5640,14 @@
          }
       },
       "archer": {
+         "archer_outfit": {
+            "display_name": "Archer's Cloak",
+            "description": "Offers light protection"
+         },
          "archer_description": {
-            "display_name": "???",
-            "description": "???",
-            "requirements": "???"
+            "display_name": "Archer",
+            "description": "A ranged combat unit that shoots foes with arrows",
+            "requirements": "A level 2 footman and an Archer's Bow"
          }
       },
       "architect": {
@@ -5149,7 +5701,7 @@
          "blacksmith_forge": {
             "blacksmith_forge_ghost": {
                "display_name": "Forge",
-               "description": "A sturdy, stone oven for heating metal"
+               "description": "A stone oven for heating metal"
             }
          },
          "blacksmith_hammer": {
@@ -5178,7 +5730,7 @@
             "basic_shield_recipe": {
                "description": "Grants the ability to completely block attacks.",
                "flavor": "Incredibly protective. Small children play turtle underneath.",
-               "recipe_name": "Trusty Shield"
+               "recipe_name": "Steel Shield"
             },
             "iron_shield_recipe": {
                "description": "Heavy, but effective.",
@@ -5299,7 +5851,25 @@
                "description": "Massive storage for 256 items!",
                "recipe_name": "Vault",
                "flavor": "Conceived by the brilliant Arci, Survivor of Chaat"
-            }
+            },
+            "iron_coif_recipe": {
+               "description": "Protection for your head",
+               "recipe_name": "Iron Coif"
+            },
+            "steel_helmet_recipe": {
+               "description": "Extra protection for your noggin!",
+               "recipe_name": "Plate Helm"
+            },
+            "bronze_circlet_recipe": {
+               "description": "Protection for your head!",
+               "recipe_name": "Bronze Circlet",
+               "flavor": "So regal. So stylish!"
+            },
+            "bronze_shield_recipe": {
+               "description": "Increase armor and blocks attacks!",
+               "recipe_name": "Bronze Shield"
+            },
+            "decoration_name": "Decorations"
          }
       },
       "carpenter": {
@@ -5309,8 +5879,8 @@
             "requirements": "Carpenter's saw, crafted by the Blacksmith.",
             "level_6_data": {
                "title": "Master Carpenter",
-               "perk_000_name": "10,000 Hours (not implemented)",
-               "perk_000_description": "The carpenter's mastery of his trade allows him to come up with completely new ways of using wood."
+               "perk_000_name": "10,000 Hours",
+               "perk_000_description": "The carpenter's mastery of his trade allows him access to recipes that expand your town's opportunities."
             },
             "level_2_data": {
                "perk_000_name": "Collaborative Insight",
@@ -5428,6 +5998,7 @@
             "armor_name": "Armor",
             "furniture_name": "Furniture",
             "workbench_name": "Workbenches",
+            "utility_name": "Utility",
             "shepherds_crook_recipe": {
                "description": "Required to promote a hearthling into a Shepherd.",
                "recipe_name": "Shepherd's Crook",
@@ -5529,7 +6100,7 @@
             },
             "wooden_wall_lantern_recipe": {
                "description": "A simple lantern. Place on buildings to provide light at night.",
-               "recipe_name": "Wooden Wall-mounted Lantern",
+               "recipe_name": "Wooden Wall-Mounted Lantern",
                "flavor": "So comfortinzzzzzzzz..."
             },
             "wooden_window_frame_recipe": {
@@ -5559,6 +6130,47 @@
             "wooden_window_frame_wide_recipe": {
                "description": "It's got a panoramic view!",
                "recipe_name": "Wide Wooden Window Frame"
+            },
+            "herbalist_staff_recipe": {
+               "description": "Required to promote a hearthling to an herbalist, who creates healing tonics and bandages.",
+               "recipe_name": "Herbalist's Staff"
+            },
+            "safety_standard_recipe": {
+               "description": "Use to designate a safety point",
+               "recipe_name": "Wooden Safety Standard"
+            },
+            "wooden_tunnel_door_recipe": {
+               "recipe_name": "Wooden Tunnel Door",
+               "description": "Useful for blocking off tunnels"
+            },
+            "wooden_sign_cook_recipe": {
+               "description": "A sign with the mark of the Cook.",
+               "recipe_name": "Cook's Wall-Mounted Sign"
+            },
+            "wooden_sign_herbalist_recipe": {
+               "description": "A sign with the mark of the Herbalist.",
+               "recipe_name": "Herbalist's Wall-Mounted Sign"
+            },
+            "wooden_sign_inn_recipe": {
+               "description": "A sign marking a place for rest and revelry.",
+               "recipe_name": "Inn Wall-Mounted Sign"
+            },
+            "wooden_sign_potter_recipe": {
+               "description": "A sign with the mark of the Potter.",
+               "recipe_name": "Potter's Wall-Mounted Sign"
+            },
+            "log_pile_recipe": {
+               "recipe_name": "Log Pile",
+               "description": "A pile of logs stacked together. An excellent way to store lots of wood for later use."
+            },
+            "wheat_pile_recipe": {
+               "recipe_name": "Large Wheat Bundle",
+               "description": "For when normal wheat bales are just too small. Good for efficiently storing a large amount of wheat"
+            },
+            "blue_market_stall_recipe": {
+               "description": "Merchants can visit this stall to buy and sell goods",
+               "recipe_name": "Blue Market Stall",
+               "flavor": "But who are these people? And where are they coming from?"
             }
          }
       },
@@ -5692,6 +6304,11 @@
             "corn_meal_recipe": {
                "description": "Corn ground into a fine powder",
                "recipe_name": "Corn Meal"
+            },
+            "decoration_name": "Decorations",
+            "roast_mutton_recipe": {
+               "recipe_name": "Roasted Rack of Mutton",
+               "description": "Nutritious and delicious"
             }
          },
          "cook_mill": {
@@ -5724,7 +6341,7 @@
                "perk_000_description": "Occasionally, the farmer's special touch yields... special results."
             },
             "level_1_data": {
-               "perk_000_name": "Speed Up 10%",
+               "perk_000_name": "Speed Up",
                "perk_000_description": "Running fresh food from field to table has increased the farmer's footspeed."
             },
             "level_2_data": {
@@ -5738,7 +6355,8 @@
          },
          "farmer_buffs": {
             "speed_1_buff": {
-               "description": "Running fresh food from field to table has increased the farmer's footspeed."
+               "description": "Running fresh food from field to table has increased the farmer's footspeed.",
+               "display_name": "Farmer Speed Increase +10"
             }
          },
          "farmer_hoe": {
@@ -5782,13 +6400,16 @@
          },
          "footman_buffs": {
             "damage_1_buff": {
-               "description": "At Level 1, the footman attacks with increased ferocity"
+               "description": "At Level 1, the footman attacks with increased ferocity",
+               "display_name": "Damage +20%"
             },
             "damage_2_buff": {
-               "description": "At Level 1, the footman attacks with increased ferocity"
+               "description": "The footman attacks with increased ferocity",
+               "display_name": "Damage +40%"
             },
             "damage_3_buff": {
-               "description": "At Level 1, the footman attacks with increased ferocity"
+               "description": "At Level 1, the footman attacks with increased ferocity",
+               "display_name": "Damage +20%"
             }
          },
          "footman_outfit": {
@@ -5902,7 +6523,7 @@
             },
             "gargoyle_recipe": {
                "description": "Gothic-style carving to decorate your walls.",
-               "recipe_name": "Wall Mounted Decorative Gargoyle",
+               "recipe_name": "Wall-Mounted Decorative Gargoyle",
                "flavor": "Remnants of the servants of Brelor, Crownless King."
             },
             "tools_name": "Tools",
@@ -5953,7 +6574,7 @@
             },
             "stone_wall_lantern_recipe": {
                "description": "Attaches to the walls of buildings, providing light",
-               "recipe_name": "Stone Wall-mounted Lantern",
+               "recipe_name": "Stone Wall-Mounted Lantern",
                "flavor": "Cons: Heavy. Pros: Unlikely to burn itself down."
             },
             "tower_brazier_recipe": {
@@ -5971,7 +6592,11 @@
                "recipe_name": "Mason's Pedestal",
                "flavor": "Snap and spark, hiss of coal, light the way, transmute the earth whole."
             },
-            "workbenches_name": "Workbenches"
+            "workbenches_name": "Workbenches",
+            "stone_pile_recipe": {
+               "recipe_name": "Stone Pile",
+               "description": "A pile of rocks stacked together. An excellent way to store lots of stone for later use."
+            }
          }
       },
       "miner": {
@@ -6033,7 +6658,7 @@
             },
             "clay_wall_lamp_recipe": {
                "description": "Its flame brings a warm glow at night.",
-               "recipe_name": "Wall Mounted Clay Oil Lamp",
+               "recipe_name": "Wall-Mounted Clay Oil Lamp",
                "flavor": "'Close round us guard the spirits of night! As they dance and sway, free you'll be to dream the dark away.'"
             },
             "garden_gnome_recipe": {
@@ -6042,7 +6667,8 @@
                "flavor": "Designed by Grandmaster crafter The_M"
             },
             "furniture_name": "Furniture and Decoration",
-            "decoration_name": "Decoration",
+            "decoration_name": "Decorations",
+            "utility_name": "Utility",
             "potter_workbench_recipe": {
                "description": "Helps the potter create simple items from clay",
                "recipe_name": "Potter's Wheel",
@@ -6052,6 +6678,10 @@
                "description": "Hardens basic clay objects.",
                "recipe_name": "Potter's Kiln",
                "flavor": "'Through heat and hardship we realize our final selves.' -Silora, Acolyte of Rayya's Mystery "
+            },
+            "clay_safety_standard_recipe": {
+               "description": "Use to designate a safety point",
+               "recipe_name": "Clay Safety Standard"
             },
             "building_parts_name": "Building Parts",
             "clay_bricks_recipe": {
@@ -6156,6 +6786,14 @@
             "unfired_clay_vase_recipe": {
                "description": "A simple vase made on the pottery wheel that is used for more complex recipes.",
                "recipe_name": "Unfired Clay Vase"
+            },
+            "clay_pile_recipe": {
+               "recipe_name": "Clay Pile",
+               "description": "A pile of clay stacked together. An excellent way to store lots of clay for later use."
+            },
+            "clay_market_stall_recipe": {
+               "description": "Merchants can visit this stall to buy and sell goods",
+               "recipe_name": "Clay Market Stall"
             }
          },
          "potter_workbench": {
@@ -6193,7 +6831,7 @@
                "perk_000_description": "Wild animals are more likely to appear whenever the shepherd is looking for them."
             },
             "level_1_data": {
-               "perk_000_name": "Speed Up 10%",
+               "perk_000_name": "Speed Up",
                "perk_000_description": "The shepherd is now more adept at getting the flock to walk a tiny bit faster."
             },
             "level_3_data": {
@@ -6236,7 +6874,7 @@
             "requirements": "Trapper's Knife, forged by the Blacksmith",
             "level_1_data": {
                "title": "Journeyman Trapper",
-               "perk_000_name": "Speed Up 10%",
+               "perk_000_name": "Speed Up",
                "perk_000_description": "Long walks have increased the trapper's foot speed."
             },
             "level_3_data": {
@@ -6278,7 +6916,8 @@
          },
          "trapper_buffs": {
             "speed_1_buff": {
-               "description": "Long walks have increased the trapper's foot speed."
+               "description": "Long walks have increased the trapper's foot speed.",
+               "display_name": "Trapper Speed Increase +10"
             }
          },
          "trapper_knife": {
@@ -6417,12 +7056,12 @@
                "flavor": "Too beautiful to step on."
             },
             "worker_outfit_2_recipe": {
-               "description": "Double stiching and strategically placed padding improves the worker's efficiency. The worker who dons this upgrade outfit will move 10% faster.",
+               "description": "Double stitching and strategically placed padding improves the worker's efficiency. The worker who dons this upgrade outfit will move faster.",
                "recipe_name": "Upgraded Worker Outfit",
                "flavor": "Your town loves you!"
             },
             "worker_outfit_winter_recipe": {
-               "description": "A heavy wool coat, for cold winter nights. The worker who dons this upgrade outfit will move 10% faster.",
+               "description": "A heavy wool coat, for cold winter nights. The worker who dons this upgrade outfit will move faster.",
                "recipe_name": "Winter Worker Outfit",
                "flavor": "Winter is coming!"
             },
@@ -6441,12 +7080,16 @@
                "description": "Used to make complex crafts of thread and fabric.",
                "recipe_name": "Weaver Workbench",
                "flavor": "In the beginning there was nothing, and then there was Spider."
+            },
+            "leather_helmet_recipe": {
+               "description": "Light-weight protection for your head!",
+               "recipe_name": "Leather Skull Cap"
             }
          },
          "weaver_loom": {
             "weaver_loom_ghost": {
                "display_name": "Loom",
-               "description": "A skilled Weaver uses this to weave thread into cloth."
+               "description": "Used to weave thread into cloth."
             }
          },
          "weaver_outfit": {
@@ -6461,14 +7104,14 @@
                "description": "For spinning fiber into thread"
             },
             "weaver_spindle_talisman": {
-               "display_name": "The Spindle",
-               "description": "For spinning fiber into thread"
+               "display_name": "Weaver's Spindle",
+               "description": "Required to promote a hearthling into a Weaver"
             }
          },
          "weaver_spinning_wheel": {
             "weaver_spinning_wheel_ghost": {
                "display_name": "Spinning Wheel",
-               "description": "A skilled Weaver uses this to spin fiber into thread."
+               "description": "Used to spin fiber into thread."
             }
          },
          "weaver_workbench": {
@@ -6507,6 +7150,152 @@
                "description": "Sturdy construction increases workers' productivity"
             }
          }
+      },
+      "herbalist": {
+         "herbalist_description": {
+            "display_name": "Herbalist",
+            "description": "Heals units with crafted balms and bandages.",
+            "requirements": "Herbalist's Staff, crafted by the Carpenter",
+            "workshop": {
+               "name": "Herbalist Lab",
+               "description": "Allows the Herbalist to craft healing balms and bandages.",
+               "long_description": "Allows the Herbalist to craft healing balms and bandages."
+            },
+            "level_1_data": {
+               "perk_000_name": "Improved Willpower",
+               "perk_000_description": "The herbalist channels the spirits of the forest and gains natural regeneration."
+            },
+            "level_2_data": {
+               "perk_000_name": "Collaborative Insight",
+               "perk_000_description": "The herbalist is now skillful enough to use materials created by the other crafters."
+            },
+            "level_4_data": {
+               "perk_000_name": "Power Medic",
+               "perk_000_description": "The herbalist can now attend to up to 4 hearthlings at a time."
+            },
+            "level_0_data": {
+               "perk_000_name": "Junior Practitioner",
+               "perk_000_description": "The herbalist can attend to 2 hurt hearthlings at a time."
+            },
+            "level_3_data": {
+               "perk_000_name": "Item Proficiency",
+               "perk_000_description": "The herbalist's medical prowess increases the effectiveness of healing items by 50%."
+            }
+         },
+         "herbalist_outfit": {
+            "display_name": "Herbalist Outfit",
+            "description": "Traditional robes of the Herbalist"
+         },
+         "herbalist_staff": {
+            "display_name": "Herbalist Staff",
+            "description": "Required to promote a hearthling into an Herbalist",
+            "herbalist_staff_iconic": {
+               "display_name": "Herbalist Staff",
+               "description": "Required to promote a hearthling into an Herbalist"
+            },
+            "herbalist_staff_talisman": {
+               "display_name": "Herbalist's Staff",
+               "description": "Required to promote a hearthling into an Herbalist"
+            }
+         },
+         "herbalist_workbench": {
+            "herbalist_workbench_ghost": {
+               "display_name": "Herbalist Lab",
+               "description": "Used to craft healing items"
+            }
+         },
+         "recipes": {
+            "herbalist_workbench_recipe": {
+               "description": "Allows the Herbalist to craft healing balms and bandages.",
+               "recipe_name": "Herbalist Lab"
+            },
+            "workbenches_name": "workbenches",
+            "tonics_name": "Tonics",
+            "small_healing_tonic_recipe": {
+               "description": "A medicinal drink that heals for a minuscule amount",
+               "recipe_name": "Small Healing Tonic"
+            },
+            "stamina_tonic_recipe": {
+               "description": "Buffs stamina of all hearthlings for a short while",
+               "recipe_name": "Stamina Tonic"
+            },
+            "strength_tonic_recipe": {
+               "description": "Buffs muscle of all hearthlings for a short while",
+               "recipe_name": "Strength Tonic"
+            },
+            "bandages_name": "Bandages",
+            "coarse_bandage_recipe": {
+               "recipe_name": "Coarse Bandage",
+               "description": "Used by the herbalist to heal for a small amount"
+            },
+            "heavy_bandage_recipe": {
+               "recipe_name": "Heavy Bandage",
+               "description": "Used by the herbalist to provide a lot of healing. Good for heavy wounds."
+            },
+            "light_bandage_recipe": {
+               "recipe_name": "Light Bandage",
+               "description": "Used by the herbalist to heal a moderate amount"
+            },
+            "courage_tonic_recipe": {
+               "description": "Increases the courage of all town citizens for a short while.",
+               "recipe_name": "Courage Tonic"
+            },
+            "decorations_name": "Decorations"
+         },
+         "herbalist_buffs": {
+            "willpower_1_buff": {
+               "display_name": "Willpower +50",
+               "description": "The herbalist has improved health regeneration"
+            }
+         }
+      },
+      "cleric": {
+         "cleric_outfit": {
+            "display_name": "Cleric's Robes",
+            "description": "Holy garb worn by the devout few"
+         },
+         "cleric_description": {
+            "display_name": "Cleric",
+            "description": "A combat healer",
+            "requirements": "A level 2 herbalist and a Cleric's Tome"
+         },
+         "cleric_tome": {
+            "cleric_tome_talisman": {
+               "display_name": "Cleric's Tome",
+               "description": "Required to promote a hearthling to a Cleric"
+            },
+            "display_name": "Tome of Healing",
+            "description": "Contains sacred texts on the way of the cleric"
+         }
+      },
+      "knight": {
+         "knight_outfit": {
+            "display_name": "Knight's Armor",
+            "description": "Metal armor worn by a knight"
+         },
+         "knight_description": {
+            "display_name": "Knight",
+            "description": "A defensive combatant focused on protecting allies from harm.",
+            "requirements": "Requires a level 2 footman and a Knight's Shield, crafted by the Blacksmith",
+            "level_1_data": {
+               "perk_000_name": "Damage Reduction Rank 1",
+               "perk_000_description": "The knight reduces damage from foes by a little"
+            },
+            "level_4_data": {
+               "perk_000_name": "Damage Reduction Rank 2",
+               "perk_000_description": "The knight reduces damage from foes by a lot"
+            }
+         },
+         "knight_buffs": {
+            "defense_1_buff": {
+               "display_name": "Defense Up 20%",
+               "description": "Increases defense by 20%"
+            },
+            "defense_2_buff": {
+               "display_name": "Defense Up 40%",
+               "description": "Increases defense by 40%"
+            }
+         }
       }
    },
    "stonehearth_mixins": {
@@ -6530,6 +7319,11 @@
                "decay_2": {
                   "description": "Rotten. Ew."
                }
+            },
+            "egg": {
+               "decay_1": {
+                  "description": "Starting to go bad. Better cook it soon."
+               }
             }
          },
          "jerky": {
@@ -6551,6 +7345,10 @@
             "display_name": "Fur pelt",
             "description": "Soft, supple, and quite dead"
          }
+      },
+      "base_human_npc": {
+         "display_name": "[str(self.unit_info.custom_name)]",
+         "description": "A guest of your town"
       }
    }
 }

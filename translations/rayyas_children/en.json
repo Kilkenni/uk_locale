@@ -27,7 +27,7 @@
          "recipes": {
             "golden_gourd_curry_recipe": {
                "description": "Are gourds are more edible when cooked?",
-               "recipe_name": "Golden Guord Curry",
+               "recipe_name": "Golden Gourd Curry",
                "flavor": "TODO(flavor!)"
             },
             "flat_bread_recipe": {
@@ -105,6 +105,12 @@
                      "name": "Rajin's Goods of the Distant West",
                      "title": "An exotic shop of rare woods arrives"
                   }
+               },
+               "food_shop": {
+                  "shop_info": {
+                     "name": "Farmer Gem's Farm Supplies",
+                     "title": "Farmer Gem's supply cart rolls into town"
+                  }
                }
             }
          }
@@ -114,7 +120,7 @@
       "gizmos": {
          "rc_camp_standard": {
             "rc_camp_standard_ghost": {
-               "display_name": "The banner of Rayya's Children",
+               "display_name": "Camp Banner",
                "description": "How you know you've come home"
             }
          }
