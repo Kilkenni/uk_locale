@@ -26,8 +26,8 @@
       "cook": {
          "recipes": {
             "golden_gourd_curry_recipe": {
-               "description": "Are gourds are more edible when cooked?",
-               "recipe_name": "Golden Gourd Curry",
+               "description": "Чи більш стравні гарбузи, якщо їх приготувати?",
+               "recipe_name": "Каррі &quot;Золотавий Гарбуз&quot;",
                "flavor": "TODO(flavor!)"
             },
             "flat_bread_recipe": {
@@ -81,9 +81,9 @@
                               "003": "All ready to start a new outpost, eh! My friends, the desert welcomes all its children. We'll be back tomorrow to check on you, but in the meantime, your parents sent these supplies, to get you started:",
                               "004": "Aha, a new potential partner for Iskender Traders! We must return tomorrow with the whole store, but tell you what: take this seed investment, and see what you can turn it into for us, eh?"
                            },
-                           "bulletin_title": "An Iskender Agent Approaches",
-                           "dialog_title": "Naryal Iskender",
-                           "choice_000": "Many thanks, Honored Elder!"
+                           "bulletin_title": "Прибув посланець Іскедеров",
+                           "dialog_title": "Нарьял Іскендер",
+                           "choice_000": "Щиро дякуємо, Поважний Старійшина!"
                         }
                      }
                   }
@@ -120,8 +120,8 @@
       "gizmos": {
          "rc_camp_standard": {
             "rc_camp_standard_ghost": {
-               "display_name": "Camp Banner",
-               "description": "How you know you've come home"
+               "display_name": "Прапор привалу",
+               "description": "Щоб знати, де ви як вдома"
             }
          }
       }
