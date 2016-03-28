@@ -1,6 +1,6 @@
 {
    "kingdom": {
-      "kingdom_name": "Rayya's Children",
+      "kingdom_name": "Нащадки Райї",
       "quote": "Meditation, mediation, medication: Order in self brings order to others brings health to all.",
       "long_description": "The people of the desert learned early that to survive, they needed each other, and preferably as many others as they could reach. Now, visitors find them generous hosts with access to goods from all over the world.",
       "post_selection_description": ", a society of charming, wily traders."
@@ -31,43 +31,43 @@
                "flavor": "TODO(flavor!)"
             },
             "flat_bread_recipe": {
-               "description": "Unleavened bread made from corn meal",
-               "recipe_name": "Flat Bread"
+               "description": "Хліб, випечений з кукурудзяного борошна без закваски",
+               "recipe_name": "Пісний хліб"
             },
             "meat_tagine_recipe": {
-               "description": "Meat and veggies simmered in a clay pot",
-               "recipe_name": "Meat Stew Tagine"
+               "description": "М'ясо та овочі, повільно тушковані у череп'яному горщику",
+               "recipe_name": "М'ясний тушкований таджин"
             },
             "vegetable_tagine_recipe": {
-               "description": "Veggies simmered in a clay pot",
-               "recipe_name": "Vegetable Stew Tagine"
+               "description": "Овочі, повільно тушковані у череп'яному горщику",
+               "recipe_name": "Городинний тушкований таджин"
             }
          }
       }
    },
    "data": {
       "rayyas_children_population": {
-         "display_name": "Rayya's Children"
+         "display_name": "Нащадки Райї"
       },
       "gm": {
          "campaigns": {
             "trader": {
                "iskender_caravan_1": {
                   "shop_info": {
-                     "name": "Iskender Trading Caravan",
-                     "title": "The Iskender Trading Caravan returns!"
+                     "name": "Торговий караван Іскендеров",
+                     "title": "Торговий караван Іскендеров повертається!"
                   }
                },
                "iskender_caravan_2": {
                   "shop_info": {
-                     "name": "Iskender Trading Caravan",
-                     "title": "The Iskender Trading Caravan returns with more things!"
+                     "name": "Торговий караван Іскендеров",
+                     "title": "Торговий караван Іскендеров привіз ще товарів!"
                   }
                },
                "iskender_caravan_3": {
                   "shop_info": {
-                     "name": "Iskender Trading Caravan",
-                     "title": "The Iskender Trading Caravan returns!"
+                     "name": "Торговий караван Іскендеров",
+                     "title": "Торговий караван Іскендеров повертається!"
                   }
                },
                "starting_food_donation": {
@@ -83,7 +83,7 @@
                            },
                            "bulletin_title": "Прибув посланець Іскедеров",
                            "dialog_title": "Нарьял Іскендер",
-                           "choice_000": "Щиро дякуємо, Поважний Старійшина!"
+                           "choice_000": "Щиро дякуємо, Поважний Старійшино!"
                         }
                      }
                   }
@@ -120,7 +120,7 @@
       "gizmos": {
          "rc_camp_standard": {
             "rc_camp_standard_ghost": {
-               "display_name": "Прапор привалу",
+               "display_name": "Прапор табору",
                "description": "Щоб знати, де ви як вдома"
             }
          }
