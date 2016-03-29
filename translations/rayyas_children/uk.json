@@ -1,9 +1,9 @@
 {
    "kingdom": {
       "kingdom_name": "Нащадки Райї",
-      "quote": "Meditation, mediation, medication: Order in self brings order to others brings health to all.",
-      "long_description": "The people of the desert learned early that to survive, they needed each other, and preferably as many others as they could reach. Now, visitors find them generous hosts with access to goods from all over the world.",
-      "post_selection_description": ", a society of charming, wily traders."
+      "quote": "Медитація, медіація, медичний догляд: Спокій у собі є спокій для інших і є добробут для всіх.",
+      "long_description": "Люди пустелі давно зрозуміли, що щоб вижити, вони потрібні один одному, та їм потрібен кожний, хто може приєднатися до них. І отепер для будь-якого гостя вони є щедрими господарями, які мають доступ до товарів із усього світу.",
+      "post_selection_description": ", суспільство чарівних та лукавих торговців."
    },
    "jobs": {
       "potter": {
@@ -28,7 +28,7 @@
             "golden_gourd_curry_recipe": {
                "description": "Чи більш стравні гарбузи, якщо їх приготувати?",
                "recipe_name": "Каррі &quot;Золотавий Гарбуз&quot;",
-               "flavor": "TODO(flavor!)"
+               "flavor": "TODO(риба!)"
             },
             "flat_bread_recipe": {
                "description": "Хліб, випечений з кукурудзяного борошна без закваски",
