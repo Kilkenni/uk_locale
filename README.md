@@ -8,7 +8,7 @@ An ongoing ukrainian translation for Stonehearth core. Very much a WIP. The cura
 
 ##How it works:
 
-For testing put all te files in the separate folder inside your Stonehearth's mod folder. Then choose Ukrainian in the game options.
+For testing put all the files in the separate folder inside your Stonehearth's mod folder. Then choose Ukrainian in the game options.
 
 ##How to translate en.json:
 

@@ -12,6 +12,7 @@
             "place_item_on_structure": "placing [name(data.target)]",
             "work_at_workshop": "crafting [str(data.craftable_name)]",
             "attack_melee_adjacent": "атакує [name(data.target)]",
+            "heal_ranged_in_sight": "",
             "wait_at_safety_point": "чекає біля прапорця безпеки",
             "weaponize": "watching for intruders",
             "resting_by_fire": "спочиває коло багаття",
@@ -225,7 +226,13 @@
             "cancel_order": {
                "display_name": "Cancel Combat Order",
                "description": "Cancels active combat orders."
-            }
+            },
+            "level": "",
+            "class_lv_title": "",
+            "no_requirements": "",
+            "equipment_description": "",
+            "level_description": "",
+            "or": ""
          },
          "citizens": {
             "title": "Citizens",
@@ -278,7 +285,8 @@
             },
             "month_format": "i18n(stonehearth:ui.game.calendar.months.[str(date.month)])",
             "date_format_long": "Day [str(date.day)] of i18n(stonehearth:ui.game.calendar.month_format), [str(date.year)]",
-            "date_time_long_format": "Day [str(date.day)] of i18n(stonehearth:ui.game.calendar.month_format), [str(date.year)], [str(date.time)]"
+            "date_time_long_format": "Day [str(date.day)] of i18n(stonehearth:ui.game.calendar.month_format), [str(date.year)], [str(date.time)]",
+            "date_format_short": ""
          },
          "esc_menu": {
             "title": "Stonehearth",
@@ -359,6 +367,12 @@
                      "description": "Mine individual blocks",
                      "tip_title": "Click and drag to dig downward",
                      "tip_description": "Right click to exit"
+                  },
+                  "loot_item": {
+                     "display_name": "",
+                     "description": "",
+                     "tip_title": "",
+                     "tip_description": ""
                   },
                   "cancel_task": {
                      "display_name": "Cancel Task",
@@ -450,12 +464,6 @@
                      "description": "Rally your hearthlings to prepare for intruders!",
                      "activated_title": "Town Alert Mode Activated!",
                      "activated_text": "Your hearthlings are vigilantly watching for intruders. Hearthlings not enrolled in the militia will run to safety points."
-                  },
-                  "loot_item": {
-                     "display_name": "Loot",
-                     "description": "Steal items from another player.",
-                     "tip_title": "Click and drag to loot items from the world",
-                     "tip_description": "Right click to exit this mode"
                   },
                   "party_1": {
                      "display_name": "Combat Party 1",
@@ -567,7 +575,12 @@
                "title": "Daily Update",
                "immigration_report_title": "Immigration Report",
                "population_label": "[str(town_name)] population",
-               "next_requirements_label": "Next hearthling requirements..."
+               "next_requirements_label": "Next hearthling requirements...",
+               "tooltips": {
+                  "food": "",
+                  "morale": "",
+                  "net_worth": ""
+               }
             },
             "collection_quest": {
                "pay": "Here you go!",
@@ -773,7 +786,7 @@
                   "tooltip_clay": "clay",
                   "tooltip_ore": "ore",
                   "tooltip_animal_part": "animal parts",
-                  "tooltip_earth": "materials made of earth",
+                  "tooltip_resource_pile": "",
                   "tooltip_plant": "plants",
                   "tooltip_portal": "doors & windows",
                   "tooltip_furniture": "furniture",
@@ -1014,6 +1027,7 @@
             "gfx_msaa": "Anti-Aliasing Level",
             "gfx_shadows": "Shadow Detail",
             "gfx_max_lights": "Maximum Number of Lights",
+            "gfx_max_shadows": "",
             "gfx_drawdistance": "Draw Distance",
             "gfx_enable_ssao": "Enable Ambient Occlusion",
             "gfx_use_high_quality": "Enable High Quality Graphics",
@@ -1034,6 +1048,7 @@
             "system": "System",
             "force_32_bit": "* Force 32-bit (Requires Restart)",
             "force_32_bit_note": "* Force 32-bit only if absolutely necessary. 64-bit is faster and supports larger towns.",
+            "collect_profile": "",
             "enable_lua_jit": "Use Lua JIT (Requires Restart)",
             "send_anon_data": "Send anonymous feedback to help improve Stonehearth!",
             "language_select": "Language",
@@ -1048,7 +1063,11 @@
                "default_storage_filter_none_description": "When creating a new stockpile or putting down a new crate, the default filter on the storage will be set to 'None' instead of 'All'",
                "show_hearthling_paths": "Show Hearthling paths",
                "show_hearthling_paths_description": "Display the path your hearthlings are following.",
-               "max_citizens": "Max Citizens"
+               "max_citizens": "Max Citizens",
+               "randomize_attributes": "",
+               "randomize_attributes_description": "",
+               "auto_loot": "",
+               "auto_loot_description": ""
             }
          },
          "title_screen": {
@@ -1088,6 +1107,11 @@
                   "display_name": "Peaceful Game",
                   "description": "A sandbox-mode, where you're free to build your town without worrying about invaders whatsoever.",
                   "post_selection_text": "a tranquil place to start anew."
+               },
+               "hard": {
+                  "display_name": "",
+                  "description": "",
+                  "post_selection_text": ""
                }
             },
             "begin_button": "Begin"
@@ -1158,7 +1182,8 @@
                "description": "How likely this hearthling will help out a fellow villager or befriend others.",
                "bullet_points": {
                   "000": "Determines maximum trapper pet count",
-                  "001": "Increases shepherd animal happiness"
+                  "001": "Increases shepherd animal happiness",
+                  "002": ""
                }
             },
             "food": {
@@ -1242,11 +1267,11 @@
             },
             "inventory": {
                "display_name": "Inventory",
-               "description": "The gold value of all non-Resource items in the town inventory."
+               "description": ""
             },
             "buildings": {
                "display_name": "Buildings",
-               "description": "The value of all the buildings constructed your town. Large buildings will have much higher score contributions than small ones."
+               "description": ""
             },
             "agriculture": {
                "display_name": "Agriculture",
@@ -1266,7 +1291,8 @@
             "leather_resource_name": "Bolt of Leather",
             "fiber_resource_name": "Bundle of Fiber",
             "ingot_resource_name": "Metal Ingot",
-            "herb_resource_name": "Herb"
+            "herb_resource_name": "Herb",
+            "ore_resource_name": ""
          }
       }
    },
@@ -1382,6 +1408,9 @@
                }
             },
             "goblin_war": {
+               "unlock_windchimes": {
+                  "bulletin_title": ""
+               },
                "erdenes_help": {
                   "dialog_tree_info": {
                      "dialog_nodes": {
@@ -1868,6 +1897,274 @@
                               }
                            }
                         }
+                     },
+                     "ogo_invasion": {
+                        "encounters": {
+                           "erdenes_congratulations": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "erdene_appears": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    },
+                                    "erdene_departs": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    },
+                                    "ogo_poem_3": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "red_kiln_description": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    },
+                                    "ogo_poem_2": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "ogo_poem_4": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "erdene_discusses": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    },
+                                    "ogo_poem_5": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    },
+                                    "ogo_poem": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "mountains_gift": {
+                              "donation_dialog_info": {
+                                 "dialog_nodes": {
+                                    "simple_message": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "ogo_dead_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "mountain_notices": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "mountain_notices_2": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "mountain_notices_3": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "ogo_dying_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "ogo_death_2": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "ogo_death_1": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "ogo_mountain_alive_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "ogo_resists": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "renewed_attack": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "mountain_replies": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "ogo_relents": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "ogo_notices": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "mountain_asks": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "goblin_retribution_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "goblin_boss_notices": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "goblin_retribution_raid": {
+                              "mission": {
+                                 "sighted_bulletin": {
+                                    "title": ""
+                                 }
+                              }
+                           },
+                           "ogo_attacks_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "army_replies": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "ogo_attacks": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "mountain_replies": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "trigger": {
+                     "raidcamp": {
+                        "encounters": {
+                           "create_camp": {
+                              "loot_chest": {
+                                 "sheep": {
+                                    "display_name": ""
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "ogo_army_raid": {
+                  "mission": {
+                     "sighted_bulletin": {
+                        "title": ""
                      }
                   }
                }
@@ -2091,6 +2388,342 @@
                                        },
                                        "bulletin_title": "A large tree-like figure approaches.",
                                        "dialog_title": "Ent"
+                                    },
+                                    "revenge": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "ent_donation_dialog": {
+                              "donation_dialog_info": {
+                                 "dialog_nodes": {
+                                    "simple_message": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "ent_wrath": {
+                              "mission": {
+                                 "sighted_bulletin": {
+                                    "title": ""
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "orc_war": {
+               "arcs": {
+                  "trigger": {
+                     "old_khan": {
+                        "encounters": {
+                           "warchief_intro_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg2": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    },
+                                    "msg4": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       }
+                                    },
+                                    "msg3": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "green_tier_begin_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg3": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "msg4": {
+                                       "bulletin_message": {
+                                          "000": "",
+                                          "001": "",
+                                          "002": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "000": "",
+                                          "001": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "msg2": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "green_tier_end_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "blue_tier_begin_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg3": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": "",
+                                       "choice_001": ""
+                                    },
+                                    "msg2": {
+                                       "bulletin_message": {
+                                          "000": "",
+                                          "001": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "blue_tier_shakedown": {
+                              "collection_quest_info": {
+                                 "dialog_nodes": {
+                                    "shakedown": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "collection_due": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "collection_failed": {
+                                       "bulletin_message": {
+                                          "000": "",
+                                          "001": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "collection_success": {
+                                       "bulletin_message": {
+                                          "000": "",
+                                          "001": "",
+                                          "002": "",
+                                          "003": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "collection_progress": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "shakedown_refused": {
+                                       "bulletin_message": {
+                                          "000": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "red_tier_begin_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg2": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "red_tier_end_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "purple_tier_begin_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg2": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "purple_tier_end_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg2": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "msg3": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    },
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "warchief_boss_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg2": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    }
+                                 }
+                              }
+                           },
+                           "warchief_defeat_dialog": {
+                              "dialog_tree_info": {
+                                 "dialog_nodes": {
+                                    "msg2": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": ""
+                                    },
+                                    "msg1": {
+                                       "bulletin_message": {
+                                          "00": ""
+                                       },
+                                       "bulletin_title": "",
+                                       "dialog_title": "",
+                                       "choice_000": ""
                                     }
                                  }
                               }
@@ -2221,6 +2854,12 @@
             "minor_courage_buff_buff": {
                "display_name": "Minor Courage",
                "description": "Small boost of courage while in alert mode"
+            }
+         },
+         "game_modes": {
+            "game_mode_hard_buff": {
+               "display_name": "",
+               "description": ""
             }
          }
       },
@@ -2391,6 +3030,20 @@
          "show_shop": {
             "display_name": "Show Shop",
             "description": "Buy and sell goods"
+         },
+         "archer_arrows": {
+            "default_arrows": {
+               "display_name": "",
+               "description": ""
+            },
+            "slow_arrows": {
+               "display_name": "",
+               "description": ""
+            },
+            "fire_arrows": {
+               "display_name": "",
+               "description": ""
+            }
          }
       },
       "personality": {
@@ -3245,6 +3898,22 @@
             "name": "Basic Resource Shop",
             "title": "Basic Resource Shop"
          }
+      },
+      "monster_tuning": {
+         "kobolds": {
+            "wolf_tank": {
+               "kobold_wolf": {
+                  "display_name": "",
+                  "description": ""
+               }
+            }
+         },
+         "orcs": {
+            "warchief_boss": {
+               "display_name": "",
+               "description": ""
+            }
+         }
       }
    },
    "entities": {
@@ -3256,14 +3925,6 @@
             },
             "display_name": "Metal Shield",
             "description": "Provides a moderate amount of defense"
-         },
-         "basic_shield": {
-            "display_name": "Steel Shield",
-            "description": "Portable armor!",
-            "basic_shield_iconic": {
-               "display_name": "Steel Shield",
-               "description": "Portable armor!"
-            }
          },
          "iron_shield": {
             "display_name": "Heavy Iron Shield",
@@ -3364,6 +4025,66 @@
                "display_name": "Steel Helmet",
                "description": "Protection for your head"
             }
+         },
+         "steel_shield": {
+            "display_name": "",
+            "description": ""
+         },
+         "iron_helm": {
+            "display_name": "",
+            "description": ""
+         },
+         "iron_circlet": {
+            "display_name": "",
+            "description": ""
+         },
+         "steel_circlet": {
+            "display_name": "",
+            "description": ""
+         },
+         "simple_quiver": {
+            "display_name": "",
+            "description": ""
+         },
+         "fire_quiver": {
+            "display_name": "",
+            "description": ""
+         },
+         "cracked_wooden_buckler": {
+            "display_name": "",
+            "description": ""
+         },
+         "square_cracked_wooden_buckler": {
+            "display_name": "",
+            "description": ""
+         },
+         "silver_mail": {
+            "display_name": "",
+            "description": "",
+            "silver_mail_iconic": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "silver_helmet": {
+            "display_name": "",
+            "description": "",
+            "silver_helmet_iconic": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "cloth_padded_helmet": {
+            "display_name": "",
+            "description": "",
+            "cloth_padded_helmet_iconic": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "bronze_helm": {
+            "display_name": "",
+            "description": ""
          }
       },
       "boulders": {
@@ -3834,22 +4555,27 @@
             "description": "This plant's fiber can be spun into thread",
             "growth_stage": {
                "004": {
-                  "name": "Mature silkweed"
+                  "name": "Mature silkweed",
+                  "description": ""
                },
                "001": {
-                  "name": "Silkweed sprout"
+                  "name": "Silkweed sprout",
+                  "description": ""
                },
                "000": {
-                  "name": "Silkweed seedling"
+                  "name": "Silkweed seedling",
+                  "description": ""
                },
                "019": {
                   "name": "Rotten silkweed"
                },
                "003": {
-                  "name": "Immature silkweed"
+                  "name": "Immature silkweed",
+                  "description": ""
                },
                "002": {
-                  "name": "Stubby silkweed"
+                  "name": "Stubby silkweed",
+                  "description": ""
                }
             }
          },
@@ -4332,6 +5058,30 @@
             "clay_market_stall_ghost": {
                "display_name": "Clay Market Stall",
                "description": "Merchants can set up shop here"
+            }
+         },
+         "decorative_elite_gong": {
+            "decorative_elite_gong_ghost": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "decorative_generals_gong": {
+            "decorative_generals_gong_ghost": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "decorative_master_gong": {
+            "decorative_master_gong_ghost": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "decorative_scout_gong": {
+            "decorative_scout_gong_ghost": {
+               "display_name": "",
+               "description": ""
             }
          }
       },
@@ -4823,12 +5573,19 @@
                "display_name": "Command Marker",
                "description": "Represents a combat command."
             }
+         },
+         "mountains_windchime": {
+            "mountains_windchime_ghost": {
+               "display_name": "",
+               "description": ""
+            }
          }
       },
       "loot": {
          "gold": {
             "display_name": "Chest of Gold Coins",
-            "description": "It's [str(self.item.stacks)] coins!"
+            "description": "It's [str(self.item.stacks)] coins!",
+            "label": ""
          }
       },
       "monsters": {
@@ -4963,6 +5720,34 @@
                "description": "Property of Central Chief Grug Skull Crusher"
             }
          },
+         "kobolds": {
+            "kobold": {
+               "display_name": "",
+               "description": ""
+            },
+            "loot": {
+               "elite_bling_hat": {
+                  "display_name": "",
+                  "description": ""
+               },
+               "generals_bling_hat": {
+                  "display_name": "",
+                  "description": ""
+               },
+               "masters_bling_hat": {
+                  "display_name": "",
+                  "description": ""
+               },
+               "scout_bling_hat": {
+                  "display_name": "",
+                  "description": ""
+               }
+            },
+            "kobold_wolf": {
+               "display_name": "",
+               "description": ""
+            }
+         },
          "undead": {
             "skeleton": {
                "display_name": "[str(self.unit_info.custom_name)]",
@@ -5002,6 +5787,30 @@
          "rabbit": {
             "display_name": "...",
             "description": "A Rabbit"
+         },
+         "ogres": {
+            "ogre": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "orcs": {
+            "orc": {
+               "display_name": "",
+               "description": ""
+            },
+            "orc_boss_banner": {
+               "display_name": "",
+               "description": ""
+            },
+            "orc_hut": {
+               "display_name": "",
+               "description": ""
+            },
+            "orc_tent": {
+               "display_name": "",
+               "description": ""
+            }
          }
       },
       "pets": {
@@ -5277,6 +6086,12 @@
             "varanus_skin": {
                "display_name": "Varanus Skin",
                "description": "Rough and scaly"
+            }
+         },
+         "feathers": {
+            "poyo_feathers": {
+               "display_name": "",
+               "description": ""
             }
          }
       },
@@ -5596,6 +6411,30 @@
                "display_name": "Archer's Bow",
                "description": "Required to promote a Footman to an Archer"
             }
+         },
+         "arrow": {
+            "display_name": "",
+            "description": ""
+         },
+         "recurve_bow": {
+            "display_name": "",
+            "description": ""
+         },
+         "crude_metal_axe": {
+            "display_name": "",
+            "description": ""
+         },
+         "crude_wooden_club": {
+            "display_name": "",
+            "description": ""
+         },
+         "ogos_bone_mace": {
+            "display_name": "",
+            "description": "",
+            "ogos_bone_mace_iconic": {
+               "display_name": "",
+               "description": ""
+            }
          }
       },
       "consumables": {
@@ -5629,6 +6468,12 @@
             "display_name": "Courage Tonic",
             "description": "Temporarily buffs Courage"
          }
+      },
+      "outfits": {
+         "trader_outfit": {
+            "display_name": "",
+            "description": ""
+         }
       }
    },
    "jobs": {
@@ -5642,12 +6487,58 @@
       "archer": {
          "archer_outfit": {
             "display_name": "Archer's Cloak",
-            "description": "Offers light protection"
+            "description": "Offers light protection",
+            "archer_hood": {
+               "display_name": "",
+               "description": ""
+            }
          },
          "archer_description": {
             "display_name": "Archer",
             "description": "A ranged combat unit that shoots foes with arrows",
-            "requirements": "A level 2 footman and an Archer's Bow"
+            "requirements": "A level 2 footman and an Archer's Bow",
+            "level_1_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_2_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_0_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_3_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_5_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_4_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_6_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            }
+         },
+         "archer_buffs": {
+            "damage_1_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "slowing_arrow": {
+               "display_name": "",
+               "description": ""
+            },
+            "fire_arrow": {
+               "display_name": "",
+               "description": ""
+            }
          }
       },
       "architect": {
@@ -5727,11 +6618,6 @@
             }
          },
          "recipes": {
-            "basic_shield_recipe": {
-               "description": "Grants the ability to completely block attacks.",
-               "flavor": "Incredibly protective. Small children play turtle underneath.",
-               "recipe_name": "Steel Shield"
-            },
             "iron_shield_recipe": {
                "description": "Heavy, but effective.",
                "flavor": "'Buck up, recruit! Better the shield dent than you!' -Thredd, Man at Arms",
@@ -5858,7 +6744,8 @@
             },
             "steel_helmet_recipe": {
                "description": "Extra protection for your noggin!",
-               "recipe_name": "Plate Helm"
+               "recipe_name": "Plate Helm",
+               "flavor": ""
             },
             "bronze_circlet_recipe": {
                "description": "Protection for your head!",
@@ -5869,7 +6756,63 @@
                "description": "Increase armor and blocks attacks!",
                "recipe_name": "Bronze Shield"
             },
-            "decoration_name": "Decorations"
+            "decoration_name": "Decorations",
+            "steel_shield_recipe": {
+               "recipe_name": "",
+               "description": "",
+               "flavor": ""
+            },
+            "knights_shield_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "iron_helm_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "iron_circlet_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "steel_circlet_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "decorative_elite_gong_recipe": {
+               "description": "",
+               "recipe_name": "",
+               "flavor": ""
+            },
+            "decorative_generals_gong_recipe": {
+               "description": "",
+               "recipe_name": "",
+               "flavor": ""
+            },
+            "decorative_master_gong_recipe": {
+               "description": "",
+               "recipe_name": "",
+               "flavor": ""
+            },
+            "decorative_scout_gong_recipe": {
+               "description": "",
+               "recipe_name": "",
+               "flavor": ""
+            },
+            "silver_mail_recipe": {
+               "recipe_name": "",
+               "description": "",
+               "flavor": ""
+            },
+            "silver_helmet_recipe": {
+               "recipe_name": "",
+               "description": "",
+               "flavor": ""
+            },
+            "bronze_helm_recipe": {
+               "recipe_name": "",
+               "description": "",
+               "flavor": ""
+            }
          }
       },
       "carpenter": {
@@ -6171,6 +7114,19 @@
                "description": "Merchants can visit this stall to buy and sell goods",
                "recipe_name": "Blue Market Stall",
                "flavor": "But who are these people? And where are they coming from?"
+            },
+            "archer_bow_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "recurve_bow_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "mountains_windchime_recipe": {
+               "description": "",
+               "recipe_name": "",
+               "flavor": ""
             }
          }
       },
@@ -6338,7 +7294,8 @@
             "requirements": "Farmer's Hoe, crafted by the Carpenter.",
             "level_6_data": {
                "perk_000_name": "Nature's Surprise (not implemented)",
-               "perk_000_description": "Occasionally, the farmer's special touch yields... special results."
+               "perk_000_description": "Occasionally, the farmer's special touch yields... special results.",
+               "title": ""
             },
             "level_1_data": {
                "perk_000_name": "Speed Up",
@@ -6396,6 +7353,18 @@
             "level_3_data": {
                "perk_000_name": "Power Spike",
                "perk_000_description": "This powerful, overhead swing deals double damage."
+            },
+            "level_6_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_2_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_5_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
             }
          },
          "footman_buffs": {
@@ -6410,6 +7379,10 @@
             "damage_3_buff": {
                "description": "At Level 1, the footman attacks with increased ferocity",
                "display_name": "Damage +20%"
+            },
+            "speed_buff": {
+               "display_name": "",
+               "description": ""
             }
          },
          "footman_outfit": {
@@ -6596,6 +7569,10 @@
             "stone_pile_recipe": {
                "recipe_name": "Stone Pile",
                "description": "A pile of rocks stacked together. An excellent way to store lots of stone for later use."
+            },
+            "stone_tunnel_door_recipe": {
+               "description": "",
+               "recipe_name": ""
             }
          }
       },
@@ -6794,6 +7771,10 @@
             "clay_market_stall_recipe": {
                "description": "Merchants can visit this stall to buy and sell goods",
                "recipe_name": "Clay Market Stall"
+            },
+            "clay_tunnel_door_recipe": {
+               "description": "",
+               "recipe_name": ""
             }
          },
          "potter_workbench": {
@@ -6837,6 +7818,9 @@
             "level_3_data": {
                "perk_000_name": "Extra Bonuses",
                "perk_000_description": "The shepherd's skill produces greater yields in animal products."
+            },
+            "level_6_data": {
+               "title": ""
             }
          },
          "shepherd_crook": {
@@ -6873,7 +7857,6 @@
             "description": "The Trapper's snares capture and (ahem) &quot;harvest&quot; small critters for a reliable source of food and supplies.",
             "requirements": "Trapper's Knife, forged by the Blacksmith",
             "level_1_data": {
-               "title": "Journeyman Trapper",
                "perk_000_name": "Speed Up",
                "perk_000_description": "Long walks have increased the trapper's foot speed."
             },
@@ -6889,7 +7872,8 @@
             },
             "level_6_data": {
                "perk_000_name": "The Deadliest Catch (Not Implemented!)",
-               "perk_000_description": "Lay special trapping zones to 'deter' acquisitive neighbors."
+               "perk_000_description": "Lay special trapping zones to 'deter' acquisitive neighbors.",
+               "title": ""
             },
             "level_5_data": {
                "perk_000_name": "Toothier Traps (Not implemented!)",
@@ -7084,6 +8068,19 @@
             "leather_helmet_recipe": {
                "description": "Light-weight protection for your head!",
                "recipe_name": "Leather Skull Cap"
+            },
+            "simple_quiver_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "fire_quiver_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "cloth_padded_helmet_recipe": {
+               "recipe_name": "",
+               "description": "",
+               "flavor": ""
             }
          },
          "weaver_loom": {
@@ -7180,6 +8177,9 @@
             "level_3_data": {
                "perk_000_name": "Item Proficiency",
                "perk_000_description": "The herbalist's medical prowess increases the effectiveness of healing items by 50%."
+            },
+            "level_6_data": {
+               "title": ""
             }
          },
          "herbalist_outfit": {
@@ -7240,7 +8240,12 @@
                "description": "Increases the courage of all town citizens for a short while.",
                "recipe_name": "Courage Tonic"
             },
-            "decorations_name": "Decorations"
+            "decorations_name": "Decorations",
+            "cleric_tome_recipe": {
+               "recipe_name": "",
+               "description": ""
+            },
+            "tools_name": ""
          },
          "herbalist_buffs": {
             "willpower_1_buff": {
@@ -7257,7 +8262,35 @@
          "cleric_description": {
             "display_name": "Cleric",
             "description": "A combat healer",
-            "requirements": "A level 2 herbalist and a Cleric's Tome"
+            "requirements": "A level 2 herbalist and a Cleric's Tome",
+            "level_0_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_1_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_2_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_3_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_6_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_4_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_5_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            }
          },
          "cleric_tome": {
             "cleric_tome_talisman": {
@@ -7266,6 +8299,86 @@
             },
             "display_name": "Tome of Healing",
             "description": "Contains sacred texts on the way of the cleric"
+         },
+         "cleric_buffs": {
+            "heal_aura_1_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "add_health_small_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "minor_muscle_aura_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "minor_muscle_aura_effect_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "compassion_1_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "heal_aura_2_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "add_health_medium_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "compassion_2_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "heal_aura_3_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "major_muscle_aura_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "major_muscle_aura_effect_buff": {
+               "display_name": "",
+               "description": ""
+            }
+         }
+      },
+      "magmasmith": {
+         "magmasmith_outfit": {
+            "display_name": "",
+            "description": ""
+         },
+         "magmasmith_hammer": {
+            "magmasmith_hammer_talisman": {
+               "display_name": "",
+               "description": ""
+            },
+            "display_name": "",
+            "description": ""
+         },
+         "magmasmith_forge": {
+            "magmasmith_forge_ghost": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "magmasmith_workbench": {
+            "magmasmith_workbench_ghost": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "magmasmith_description": {
+            "display_name": "",
+            "description": "",
+            "requirements": ""
+         },
+         "recipes": {
+            "workbenches_name": ""
          }
       },
       "knight": {
@@ -7284,16 +8397,67 @@
             "level_4_data": {
                "perk_000_name": "Damage Reduction Rank 2",
                "perk_000_description": "The knight reduces damage from foes by a lot"
+            },
+            "level_0_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_3_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_5_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_2_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
+            },
+            "level_6_data": {
+               "perk_000_name": "",
+               "perk_000_description": ""
             }
          },
          "knight_buffs": {
             "defense_1_buff": {
-               "display_name": "Defense Up 20%",
-               "description": "Increases defense by 20%"
+               "display_name": "Defense Up 10%",
+               "description": "Defense from equipment increased by 10%"
             },
             "defense_2_buff": {
-               "display_name": "Defense Up 40%",
-               "description": "Increases defense by 40%"
+               "display_name": "Defense Up 20%",
+               "description": ""
+            },
+            "health_1_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "health_2_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "courage_aura_buff": {
+               "display_name": "",
+               "description": ""
+            },
+            "courage_aura_effect_buff": {
+               "display_name": "",
+               "description": ""
+            }
+         },
+         "knight_helm": {
+            "display_name": "",
+            "description": ""
+         }
+      },
+      "npc_jobs": {
+         "npc_thief": {
+            "npc_thief_description": {
+               "display_name": "",
+               "description": "",
+               "level_0_data": {
+                  "title": ""
+               }
             }
          }
       }
