@@ -8,19 +8,19 @@
    "jobs": {
       "potter": {
          "potter_description": {
-            "requirements": "Requires a Potter's Cutter."
+            "requirements": "Потрібен різець гончара."
          },
          "recipes": {
             "mason_clay_chisel_recipe": {
-               "description": "The potter uses clay to bind wood and stone",
-               "recipe_name": "Mason's Clay Chisel",
-               "flavor": "'The kiln tempers all things; witness how clay shall, by Monkey's alchemy, grow as strong as stone' --Master Erisa"
+               "description": "За допомогою глини гончар здатен підкорити дерево та камінь",
+               "recipe_name": "Череп'яне довбило каменяра",
+               "flavor": "&quot;Випалювальна піч гартує все. Дивись: через алхімію Мавпи глина здобуває міцність заліза.&quot; — Майстер Еріза"
             }
          }
       },
       "mason": {
          "mason_description": {
-            "requirements": "Requires a level 2 Potter and a Mason's Chisel, crafted by the Potter."
+            "requirements": "Потрібен гончар рівня 2 і довбило каменяра, яке виготовляє гончар."
          }
       },
       "cook": {
@@ -90,26 +90,26 @@
                },
                "stonecutter_shop": {
                   "shop_info": {
-                     "name": "Vosker Saji's Polished Earths",
-                     "title": "A master mason's cart draws near"
+                     "name": "Скарби землі Воскера Саджи",
+                     "title": "Прибув віз мистця-каменяра"
                   }
                },
                "tannery_shop": {
                   "shop_info": {
-                     "name": "Rin's Fine Pelts and Rugs",
-                     "title": "A wagon of fine animal goods approaches"
+                     "name": "Дублені шкури та килими Рін",
+                     "title": "Прибув фургон вичинених товарів тваринного походження"
                   }
                },
                "woodcutter_shop": {
                   "shop_info": {
-                     "name": "Rajin's Goods of the Distant West",
-                     "title": "An exotic shop of rare woods arrives"
+                     "name": "Крам Далекого Західу від Раджина",
+                     "title": "Прибула пересувна крамничка рідких порід дерева"
                   }
                },
                "food_shop": {
                   "shop_info": {
-                     "name": "Farmer Gem's Farm Supplies",
-                     "title": "Farmer Gem's supply cart rolls into town"
+                     "name": "Селянськи припаси фермера Джема",
+                     "title": "До міста приїхав візок харчів фермера Джема"
                   }
                }
             }
