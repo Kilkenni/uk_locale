@@ -75,11 +75,11 @@
                      "dialog_nodes": {
                         "simple_message": {
                            "bulletin_message": {
-                              "000": "Haha, there's nothing like the sight of a brand new outpost, eh? With your hard work, this desolate land will soon a nexus of wealth and prosperity! We'll be back tomorrow with the whole store, but in the meantime, here's the starting stake your families sent along:",
-                              "001": "Monkey keep you, friends! It's always a pleasure to see a party make it to their designated tradepoint. As per your contract, we'll be back with the whole store tomorrow. In the meantime, here are the starting supplies your families ordered for you:",
-                              "002": "Iskender Traders is always looking for a new place to rest between routes. We're pleased to see you out here, friends! We'll be back with the store tomorrow, but in the meantime, have a sample of our goods, to get you started:",
-                              "003": "All ready to start a new outpost, eh! My friends, the desert welcomes all its children. We'll be back tomorrow to check on you, but in the meantime, your parents sent these supplies, to get you started:",
-                              "004": "Aha, a new potential partner for Iskender Traders! We must return tomorrow with the whole store, but tell you what: take this seed investment, and see what you can turn it into for us, eh?"
+                              "000": "Ха, ніщо так не тішить очі, як вигляд нового аванпоста, га? Вашими зусиллями цей нелюдний край хутко перетвориться у взірець достатку та процвітання! Ми повернемося наступного дня зі всіма запасами. А для початку ось вам пакунок, який зібрали ваші родичі:",
+                              "001": "Хай Мавпа береже вас, друзі! Бачити, що виправа з успіхом добулася до позначеної цілі — справжня насолода. Згідно з уговором завтра ми повернемося с повними хурамі. Осьде початкові запаси, які замовила ваша рідня:",
+                              "002": "Іскендері завжди шукають нові місця привалу поміж переходами. Ради бачити вас, друзі! Наступного дня ми вернемося з крамом. Цей зразок наших товарів пособить вам у вашому зачинанні:",
+                              "003": "Бачу, ви готові заснувати новий форпост! Друзі мої, пустеля рада всім її дітям. Ми знову приїдемо завтра, щоб провідати вас. А поки ваші батьки надіслали ці запаси, щоб допомогти вашому почину:",
+                              "004": "Ага, новий потенційний компаньйон для торговців-Іскендеров! Завтра ми знову будемо тут із повними фірами, але сьогодні от що скажу. Ось тобі початковий внесок. Подивимося, який пожиток ти зможеш нам з цього зробити, га?"
                            },
                            "bulletin_title": "Прибув посланець Іскедеров",
                            "dialog_title": "Нарьял Іскендер",
